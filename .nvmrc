@@ -1,8 +1,24 @@
-# .nvmrc
-
-# NVM RC File (I am not sure about rc file for different version manager, but mostly it should be same)
-
-# Run `nvm` use command - to switch to the version specified in .nvmrc (current file)
+# .nvmrc - Node Version Manager Configuration File
+#
+# This file specifies which Node.js version should be used for this project.
+# It works with version managers like nvm (Node Version Manager), fnm (Fast Node Manager),
+# and others.
+#
+# How to use:
+# 1. Install nvm: https://github.com/nvm-sh/nvm
+# 2. Navigate to this project directory
+# 3. Run: nvm use
+#    (This will automatically read this file and switch to the specified version)
+#
+# Why use a .nvmrc file:
+# - Ensures all developers use the same Node.js version
+# - Prevents "works on my machine" issues caused by version differences
+# - Documents the required Node.js version for the project
+# - Can be automated in CI/CD pipelines
+#
+# Note: Different version managers (nvm, fnm, volta, asdf, etc.) all recognize this file format.
+# The format is simple: just the version number on a single line.
 
 24.11.1
-# Latest Node LTS version as of Nov25
+# Latest Node.js LTS (Long Term Support) version as of November 2025
+# LTS versions are recommended for production use due to their stability and extended support.
