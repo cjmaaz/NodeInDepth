@@ -1,0 +1,8 @@
+# .nvmrc
+
+# NVM RC File (I am not sure about rc file for different version manager, but mostly it should be same)
+
+# Run `nvm` use command - to switch to the version specified in .nvmrc (current file)
+
+24.11.1
+# Latest Node LTS version as of Nov25

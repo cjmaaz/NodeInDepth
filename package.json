@@ -1,0 +1,16 @@
+{
+  "name": "nodeindepth",
+  "version": "1.0.0",
+  "description": "(This readme has to be changes and below details to moved to docs folder.)",
+  "license": "ISC",
+  "author": "Maaz",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "24.11.1",
+    "npm": "11.6.4"
+  }
+}
