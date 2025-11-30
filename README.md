@@ -12,6 +12,7 @@ This documentation covers:
 ## Documentation
 
 - [Getting Started](docs/getting-started.md) - Prerequisites, setup, and configuration
+- [Configuration Files](docs/configuration-files.md) - Understanding .nvmrc and .npmrc
 
 ## How to Use This Resource
 
