@@ -18,7 +18,12 @@
 #
 # Note: Different version managers (nvm, fnm, volta, asdf, etc.) all recognize this file format.
 # The format is simple: just the version number on a single line.
+# Few useful nvm commands are:
+# nvm install --lts (Installs the lts version of node)
+# nvm use --lts (Uses the lts version of node)
+# nvm ls and ls-remote (Lists the installed/remote version of node)
+# nvm uninstall 23.1.1 (remove the installed version of node, can also pass the --lts flag if you want to remove the lts version)
 
-24.11.1
-# Latest Node.js LTS (Long Term Support) version as of November 2025
+24.12.0
+# Latest Node.js LTS (Long Term Support) version as of December 2025
 # LTS versions are recommended for production use due to their stability and extended support.
