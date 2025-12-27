@@ -1,0 +1,1047 @@
+---
+description: Comprehensive ruleset for NodeInDepth project covering project organization, code standards, documentation requirements, contribution guidelines, and learning paths. This ruleset is mandatory and must be followed for all contributions.
+alwaysApply: true
+---
+
+# NodeInDepth Project Ruleset
+
+## ⚠️ CRITICAL: Always Follow This Ruleset
+
+**MANDATORY**: This ruleset is the authoritative guide for the NodeInDepth project. All contributors, maintainers, developers, and AI assistants working on this project **MUST** follow these rules without exception.
+
+### Ruleset Compliance Requirements
+
+- ✅ **Read First**: Before making any changes, read this entire ruleset
+- ✅ **Follow Always**: All rules in this document are mandatory, not suggestions
+- ✅ **Reference Frequently**: When in doubt, refer back to this ruleset
+- ✅ **Update When Needed**: If you discover gaps or inconsistencies, update this ruleset
+- ✅ **Enforce Consistently**: All code, documentation, and contributions must comply
+
+**Failure to follow this ruleset will result in contributions being rejected or requiring revision.**
+
+## Summary of Key Rules
+
+### Must-Do's
+
+1. ✅ **Read this entire ruleset before contributing**
+2. ✅ **Follow all ruleset requirements without exception**
+3. ✅ One folder per core concept
+4. ✅ README.md in every concept folder with extensive information
+5. ✅ Use `node:` protocol for core modules
+6. ✅ Use ES modules (`import/export`)
+7. ✅ Explain "why" in comments, not just "what"
+8. ✅ Mark unsafe operations with warnings
+9. ✅ Include extensive problem statements in documentation
+10. ✅ Test all code examples before committing (basic → enterprise)
+11. ✅ Update main README when adding content
+12. ✅ Follow version requirements strictly
+13. ✅ **Complete all TODOs** or document why they remain
+14. ✅ **Add extensive information** when completing TODOs
+15. ✅ **Include enterprise-level production examples** in each concept folder
+16. ✅ **Update this ruleset** when adding new concept sections
+17. ✅ **Update Learning Path** when adding concepts that affect recommended order
+
+### Must-Not-Do's
+
+1. ❌ **Don't ignore or bypass this ruleset** - it is mandatory
+2. ❌ **Don't contribute without reading the ruleset first**
+3. ❌ Don't use CommonJS (`require/module.exports`)
+4. ❌ Don't import core modules without `node:` prefix
+5. ❌ Don't commit non-executable code examples
+6. ❌ Don't skip README files in concept folders
+7. ❌ Don't ignore version requirements
+8. ❌ Don't add content without updating main README
+9. ❌ Don't use vague or unclear comments
+10. ❌ Don't skip safety warnings for unsafe operations
+11. ❌ Don't leave TODOs unaddressed without documentation
+12. ❌ Don't add concepts without enterprise-level examples
+13. ❌ Don't add new sections without updating this ruleset
+14. ❌ Don't hardcode specific concepts in generic sections of the ruleset
+
+---
+
+## Table of Contents
+
+1. [Project Purpose & Philosophy](#project-purpose--philosophy)
+2. [Project Organization](#project-organization)
+3. [Content Areas](#content-areas)
+4. [Code Example Standards](#code-example-standards)
+5. [Documentation Standards](#documentation-standards)
+6. [Configuration Requirements](#configuration-requirements)
+7. [Learning Path](#learning-path)
+8. [Contribution Guidelines](#contribution-guidelines)
+9. [Ruleset Maintenance](#ruleset-maintenance)
+
+---
+
+## Project Purpose & Philosophy
+
+### Mission
+
+**NodeInDepth** is a comprehensive educational resource designed to help developers understand Node.js from the ground up. This project focuses on **in-depth analysis** of core Node.js concepts and computing fundamentals, moving beyond surface-level explanations to explore the underlying mechanisms, historical context, and practical applications.
+
+### Core Principles
+
+1. **Educational Focus**: Every piece of content serves the primary goal of teaching and understanding
+2. **Depth Over Breadth**: Prefer thorough explanations over quick summaries
+3. **Beginner-Friendly**: Start with foundational concepts and build complexity progressively
+4. **Practical Examples**: All concepts are demonstrated through executable code examples
+5. **Historical Context**: Explain the "why" behind concepts, not just the "how"
+6. **Problem-Solution Approach**: Each concept begins with the problem it solves
+
+### Learning Philosophy
+
+- **Theory First**: Understand the problem and solution conceptually before implementation
+- **Practice Second**: Reinforce understanding through hands-on code examples
+- **Progressive Complexity**: Each topic builds on previous knowledge
+- **Self-Directed**: Learners can follow their own pace while maintaining a recommended path
+
+---
+
+## Project Organization
+
+### Folder Structure
+
+```
+NodeInDepth/
+├── docs/                    # General documentation and guides
+│   ├── getting-started.md   # Setup and prerequisites
+│   └── configuration-files.md  # Configuration explanations
+├── buffers/                 # Buffer concept folder
+│   ├── README.md           # Concept explanation
+│   ├── app.js              # Main examples
+│   └── different-alloc.js  # Specific topic examples
+├── emitters/               # EventEmitter concept folder
+│   ├── README.md           # Concept explanation (if exists)
+│   └── app.js              # Examples
+├── package.json            # Project configuration
+├── .nvmrc                  # Node.js version specification
+├── .npmrc                  # npm configuration
+└── README.md               # Project overview
+```
+
+### Naming Conventions
+
+#### Folders
+
+- **Format**: lowercase, plural nouns
+- **Examples**: `buffers/`, `emitters/`, `streams/`, `modules/`
+- **Rationale**: Represents the concept category, not a specific instance
+
+#### Code Files
+
+- **Format**: descriptive, kebab-case or camelCase
+- **Examples**: `app.js`, `different-alloc.js`, `event-handler.js`
+- **Rationale**: Clearly indicate the file's purpose
+
+#### Documentation Files
+
+- **Format**: kebab-case with `.md` extension
+- **Examples**: `getting-started.md`, `configuration-files.md`
+- **Rationale**: Consistent with markdown documentation standards
+
+### Required Files Per Concept Folder
+
+Each concept folder (e.g., `buffers/`, `emitters/`) **MUST** include:
+
+1. **README.md**: Comprehensive explanation of the concept
+
+   - Problem statement that led to the concept
+   - Solution explanation
+   - Historical context (when relevant)
+   - Links to related concepts
+   - TODO markers for future expansion
+
+2. **app.js** (or similar): Main executable examples demonstrating the concept
+
+   - Well-commented code
+   - Progressive examples (simple to complex)
+   - Expected output descriptions
+
+3. **Additional files**: Optional files for specific subtopics
+   - Named descriptively (e.g., `different-alloc.js` for buffer allocation strategies)
+
+### Project Structure Visualization
+
+```mermaid
+graph TD
+    A[NodeInDepth Root] --> B[docs/]
+    A --> C[Concept Folders]
+    A --> D[Config Files]
+
+    B --> B1[getting-started.md]
+    B --> B2[configuration-files.md]
+
+    C --> C1[buffers/]
+    C --> C2[emitters/]
+    C --> C3[Future Concepts]
+
+    C1 --> C1A[README.md]
+    C1 --> C1B[app.js]
+    C1 --> C1C[other examples]
+
+    C2 --> C2A[README.md]
+    C2 --> C2B[app.js]
+
+    D --> D1[package.json]
+    D --> D2[.nvmrc]
+    D --> D3[.npmrc]
+
+    style A fill:#e1f5ff
+    style C fill:#fff4e1
+    style B fill:#e8f5e9
+    style D fill:#fce4ec
+```
+
+---
+
+## Content Areas
+
+### Topic Organization
+
+Content areas are organized into concept folders, each representing a core Node.js topic. The project structure is designed to be extensible - new concepts can be added following the established patterns without breaking existing organization.
+
+**Note**: This section documents the organizational pattern. For current topics, refer to the main [README.md](../README.md) which lists all available concepts. The ruleset focuses on **how** to organize content, not **what** content currently exists.
+
+### Example Concept Structure
+
+Each concept folder follows this pattern:
+
+```
+concept-name/
+├── README.md           # Comprehensive concept explanation
+├── app.js              # Main examples (basic to advanced)
+├── advanced-example.js # Enterprise-level production examples (optional)
+└── [other-files].js   # Additional subtopic examples
+```
+
+### Content Categories
+
+Concepts are typically organized into these categories:
+
+- **Core APIs**: Buffers, Streams, File System, HTTP, etc.
+- **Architecture**: EventEmitter, Process, Cluster, etc.
+- **System**: Modules, Crypto, Path, etc.
+- **Configuration**: Project setup, version management, etc.
+
+**Important**: The specific topics listed above are examples. The actual topics in the project are documented in the main README.md and may expand over time. This ruleset provides the framework for organizing any Node.js concept.
+
+### Content Requirements
+
+Each content area **MUST** include:
+
+1. **Problem Statement**: What problem does this concept solve?
+2. **Solution Explanation**: How does this concept address the problem?
+3. **Historical Context**: Why was this needed? (when relevant)
+4. **Code Examples**: Executable demonstrations
+5. **TODO Markers**: Areas identified for future expansion
+6. **Cross-References**: Links to related concepts
+
+### Adding New Topics
+
+When adding new topics, follow this structure and ensure you:
+
+1. Create a concept folder following naming conventions
+2. Include comprehensive README.md with problem/solution explanation
+3. Add code examples from basic to enterprise-level production examples
+4. Complete all TODOs or document why they remain
+5. Update the main README.md with the new topic
+6. **MUST UPDATE THIS RULESET** (see [Ruleset Maintenance](#ruleset-maintenance) section)
+
+**Potential Topics** (examples - not exhaustive):
+
+- **Streams**: Data flow and processing
+- **Modules**: ES modules vs CommonJS
+- **Process**: Process management and clustering
+- **File System**: File operations and I/O
+- **HTTP**: Server creation and request handling
+- **Crypto**: Security and encryption
+- **Cluster**: Multi-process applications
+
+---
+
+## Code Example Standards
+
+### Executability
+
+- **ALL** code examples must be executable without errors
+- Test all examples before committing
+- Include expected output in comments when helpful
+
+### Code Style
+
+#### Module Imports
+
+**REQUIRED**: Always use the `node:` protocol prefix for core modules
+
+```javascript
+// ✅ CORRECT
+import { Buffer } from 'node:buffer';
+import EventEmitter from 'node:events';
+
+// ❌ INCORRECT
+import { Buffer } from 'buffer';
+import EventEmitter from 'events';
+```
+
+**Rationale**: The `node:` protocol explicitly indicates core modules and prevents conflicts with npm packages.
+
+#### ES Modules
+
+**REQUIRED**: Use ES6 import/export syntax (project uses `"type": "module"`)
+
+```javascript
+// ✅ CORRECT
+import { Buffer } from 'node:buffer';
+export function myFunction() {}
+
+// ❌ INCORRECT
+const { Buffer } = require('node:buffer');
+module.exports = {};
+```
+
+### Comment Standards
+
+#### Inline Comments
+
+Comments should explain **"why"** not just **"what"**:
+
+```javascript
+// ✅ GOOD - Explains why
+// Buffer.poolSize defaults to 8 KiB or 8192 Bytes
+// Node keeps this pool nearby so it doesn't have to ask the OS every time
+const restrictedUnsafeAlloc = Buffer.alloc(Buffer.poolSize >>> 1);
+
+// ❌ BAD - Only states what
+// Allocate buffer with pool size
+const restrictedUnsafeAlloc = Buffer.alloc(Buffer.poolSize >>> 1);
+```
+
+#### Block Comments
+
+Use block comments for:
+
+- Multi-line explanations
+- Historical context
+- Complex algorithm explanations
+- TODO markers
+
+Example from [buffers/app.js](buffers/app.js):
+
+```javascript
+/*
+ * When we access the element directly by providing the index, we get the response in decimal (base 10).
+ * Note: this .toString() on memoryContainer is different than to string on memoryContainer[0].
+ * TODO: Why is it different?
+ */
+```
+
+### Safety Warnings
+
+**REQUIRED**: Mark unsafe operations with clear warnings
+
+```javascript
+// ✅ GOOD - Clear warning
+// NOTE: Do not execute with unsafeMaxBuffer uncommented, could crash the system if you do not have 4 GiB of memory available.
+const unsafeMaxBuffer = Buffer.allocUnsafe(constants.MAX_LENGTH);
+```
+
+### Code Organization
+
+1. **Progressive Examples**: Start with simple, build to complex
+2. **Logical Grouping**: Group related examples together
+3. **Clear Naming**: Use descriptive variable names
+4. **Consistent Formatting**: Follow JavaScript best practices
+
+### Example Progression Requirements
+
+**MUST DO**: All concept folders must include examples that progress from basic to enterprise-level production standards:
+
+#### Basic Examples (`app.js` or similar)
+
+- Simple, single-concept demonstrations
+- Clear, well-commented code
+- Focus on understanding the core API
+- Suitable for beginners
+
+#### Intermediate Examples
+
+- Combine multiple concepts
+- Show common patterns and use cases
+- Include error handling basics
+- Demonstrate best practices
+
+#### Advanced/Enterprise Examples
+
+**REQUIRED**: Each concept folder should include at least one enterprise-level production example demonstrating:
+
+- **Production-Ready Patterns**: Error handling, logging, monitoring
+- **Performance Optimization**: Efficient algorithms, memory management
+- **Security Best Practices**: Input validation, secure defaults
+- **Scalability Considerations**: Handling high load, resource management
+- **Real-World Scenarios**: Practical use cases from actual applications
+- **Code Quality**: Clean architecture, separation of concerns, testability
+- **Documentation**: Comprehensive comments explaining architectural decisions
+
+**File Naming**: Use descriptive names like `production-example.js`, `enterprise-pattern.js`, or `advanced-usage.js`
+
+**Example Structure**:
+
+```javascript
+// Enterprise-level example: High-performance buffer processing
+// This example demonstrates production patterns for processing large data streams
+// Features: Error handling, memory management, performance monitoring
+
+import { Buffer } from 'node:buffer';
+import { performance } from 'node:perf_hooks';
+
+/**
+ * Production-grade buffer processor with:
+ * - Memory-efficient streaming
+ * - Error recovery
+ * - Performance monitoring
+ * - Resource cleanup
+ */
+class ProductionBufferProcessor {
+  // ... enterprise-level implementation
+}
+```
+
+**Rationale**: Enterprise examples bridge the gap between learning and real-world application, showing how concepts are used in production environments.
+
+### Example Structure
+
+```javascript
+// 1. Import statements
+import { Buffer } from 'node:buffer';
+
+// 2. Basic example with explanation
+const memoryContainer = Buffer.alloc(4); // 4 Bytes
+
+// 3. Operations with comments
+memoryContainer[0] = 0xff; // Directly writing to index
+
+// 4. Output demonstration
+console.log(memoryContainer.toString('hex'));
+
+// 5. Advanced example
+// ... more complex usage
+```
+
+---
+
+## Documentation Standards
+
+### README Files
+
+Each concept folder **MUST** have a `README.md` that follows this structure:
+
+#### 1. Title and Brief Description
+
+```markdown
+# Concept Name : Explained
+
+### The problem that [concept] solves
+```
+
+#### 2. Problem Statement
+
+Explain the fundamental problem(s) the concept addresses:
+
+```markdown
+Early computers ran into 3 stubborn realities:
+
+1. Different speeds everywhere
+2. Devices don't speak in neat chunks
+3. Stopping CPUs is expensive
+```
+
+#### 3. Solution Explanation
+
+Explain how the concept solves the problem:
+
+```markdown
+> Buffers were invented to decouple timing.
+
+Buffer is a region of memory used to store data temporarily...
+```
+
+#### 4. Code References
+
+Link to code examples in the same folder:
+
+```markdown
+See [app.js](app.js) for basic examples.
+See [different-alloc.js](different-alloc.js) for allocation strategies.
+```
+
+#### 5. TODO Markers
+
+Mark areas for future expansion:
+
+```markdown
+TODO: More info to be added here based on comments and code present in the js file.
+TODO: More examples of buffer and related methods should be added.
+```
+
+**MUST DO - TODO Completion**:
+
+When working on a concept folder:
+
+1. **Review All TODOs**: Check README.md and all code files for TODO markers
+2. **Prioritize Completion**: Address TODOs systematically, starting with:
+   - Missing explanations in README.md
+   - Incomplete code examples
+   - Unanswered questions in comments
+   - Missing enterprise-level examples
+3. **Extensive Documentation**: When completing TODOs, add **extensive information**:
+   - Detailed explanations (not just brief notes)
+   - Multiple examples demonstrating different aspects
+   - Real-world use cases and scenarios
+   - Common pitfalls and how to avoid them
+   - Performance considerations
+   - Security implications
+   - Best practices and patterns
+4. **Remove Completed TODOs**: Once addressed, remove the TODO marker and replace with comprehensive content
+5. **Document Remaining TODOs**: If a TODO cannot be completed immediately, add a note explaining why and when it will be addressed
+
+**Example of Extensive TODO Completion**:
+
+Instead of:
+
+```markdown
+TODO: Explain buffer pooling
+```
+
+Complete with:
+
+```markdown
+### Buffer Pooling
+
+Buffer pooling is a performance optimization technique where Node.js maintains a reusable pool of memory buffers to avoid frequent memory allocation/deallocation operations.
+
+**Why Pooling Matters**:
+
+- Memory allocation is expensive (OS calls)
+- Frequent allocation causes memory fragmentation
+- Pooling reduces garbage collection pressure
+
+**How Node.js Implements It**:
+
+- Default pool size: 8 KiB (8192 bytes)
+- Accessed via `Buffer.poolSize`
+- Used internally for `Buffer.allocUnsafe()` operations
+- Automatically managed by the runtime
+
+**Production Considerations**:
+
+- Pool size can be adjusted (though rarely needed)
+- Understanding pooling helps optimize memory usage
+- Important for high-throughput applications
+```
+
+### Main README.md
+
+The root `README.md` should:
+
+1. **Project Overview**: What is this project?
+2. **Learning Objectives**: What will you learn?
+3. **Documentation Links**: Links to all documentation
+4. **Usage Instructions**: How to use this resource
+5. **Prerequisites**: What you need to know
+6. **Contributing**: How to contribute (brief)
+
+**MUST DO - Extensive README Content**:
+
+When creating or updating README.md files (both concept folders and main README):
+
+1. **Comprehensive Coverage**: Don't just summarize - provide extensive information:
+
+   - Detailed problem statements with historical context
+   - Multiple solution approaches when applicable
+   - Deep dive into how things work internally
+   - Edge cases and gotchas
+   - Performance implications
+   - Security considerations
+
+2. **Multiple Examples**: Include various examples showing:
+
+   - Basic usage
+   - Common patterns
+   - Advanced techniques
+   - Real-world scenarios
+
+3. **Cross-References**: Link extensively to:
+
+   - Related concepts in other folders
+   - Code examples in the same folder
+   - External documentation when helpful
+   - Related Node.js APIs
+
+4. **Visual Aids**: When helpful, include:
+
+   - Diagrams (ASCII or mermaid)
+   - Code flow explanations
+   - Architecture diagrams
+   - Comparison tables
+
+5. **Learning Path**: Explain:
+   - Prerequisites for understanding this concept
+   - What concepts this builds upon
+   - What concepts this enables
+   - Recommended order of study
+
+**Example of Extensive README Section**:
+
+Instead of:
+
+```markdown
+Buffers store binary data.
+```
+
+Use:
+
+```markdown
+### Buffers: Binary Data Storage
+
+Buffers are Node.js's way of handling binary data - raw bytes that don't fit neatly into JavaScript strings. They solve fundamental problems in computing:
+
+**The Core Problem**:
+JavaScript strings are UTF-8 encoded, which works great for text but fails for:
+
+- Binary file formats (images, executables)
+- Network protocols (TCP packets, WebSocket frames)
+- Hardware interfaces (sensor data, device communication)
+
+**How Buffers Solve It**:
+Buffers provide a raw memory interface that:
+
+1. Stores data as bytes (0-255 values)
+2. Allows direct memory manipulation
+3. Enables efficient data transformation
+4. Bridges JavaScript and native system operations
+
+**Real-World Applications**:
+
+- Image processing (reading/writing PNG, JPEG)
+- Network protocols (HTTP body parsing, WebSocket frames)
+- File system operations (binary file handling)
+- Crypto operations (hashing, encryption)
+- Inter-process communication
+
+[Continue with extensive examples, code snippets, and detailed explanations...]
+```
+
+### Documentation Style
+
+- **Tone**: Educational, clear, beginner-friendly
+- **Format**: Markdown with proper headings hierarchy
+- **Links**: Use relative paths for internal links
+- **Code Blocks**: Always specify language (e.g., ` ```javascript `)
+- **Examples**: Include both code and expected output when helpful
+
+### Cross-Referencing
+
+**REQUIRED**: Link related concepts and files:
+
+```markdown
+For more on configuration, see [Configuration Files](docs/configuration-files.md).
+For buffer allocation strategies, see [different-alloc.js](buffers/different-alloc.js).
+```
+
+---
+
+## Configuration Requirements
+
+### Node.js Version
+
+**REQUIRED**: Node.js 24.12.0 (LTS)
+
+- Specified in [.nvmrc](.nvmrc)
+- Enforced via `engines` field in [package.json](package.json)
+- Strict enforcement via `engine-strict=true` in [.npmrc](.npmrc)
+
+**Rationale**: Ensures consistency across development environments and prevents version-related bugs.
+
+### npm Version
+
+**REQUIRED**: npm 11.7.0
+
+- Specified in `engines` field in [package.json](package.json)
+- Enforced via `engine-strict=true` in [.npmrc](.npmrc)
+
+### Module System
+
+**REQUIRED**: ES Modules
+
+- `"type": "module"` in [package.json](package.json)
+- All code must use `import/export` syntax
+- Core modules must use `node:` protocol prefix
+
+### Configuration Files
+
+#### .nvmrc
+
+**Purpose**: Specifies Node.js version for version managers
+
+**Content**: Single version number (e.g., `24.12.0`)
+
+**Usage**: `nvm use` (or equivalent for other version managers)
+
+#### .npmrc
+
+**Purpose**: Configures npm behavior for this project
+
+**Current Setting**: `engine-strict=true`
+
+**Effect**: npm will refuse to install if Node.js/npm versions don't match `engines` field
+
+#### package.json
+
+**Required Fields**:
+
+- `name`: Project name
+- `version`: Project version
+- `type`: Must be `"module"`
+- `engines`: Node.js and npm version requirements
+- `description`: Project description
+
+### Version Management Workflow
+
+1. **On Clone**: Run `nvm use` to switch to project version
+2. **On Install**: npm checks versions automatically (fails if mismatch)
+3. **On Update**: Update `.nvmrc` and `package.json` engines together
+
+---
+
+## Learning Path
+
+### Recommended Order
+
+Follow this sequence for optimal learning:
+
+```mermaid
+graph LR
+    A[Start] --> B[Getting Started]
+    B --> C[Configuration Files]
+    C --> D[Core Concepts]
+    D --> E[Advanced Concepts]
+    E --> F[Enterprise Patterns]
+
+    B --> B1[Setup Environment]
+    B --> B2[Install Node.js]
+    B --> B3[Configure Git]
+
+    C --> C1[Understand .nvmrc]
+    C --> C2[Understand .npmrc]
+
+    D --> D1[Read README]
+    D --> D2[Study Basic Examples]
+    D --> D3[Run and Experiment]
+
+    E --> E1[Study Advanced Examples]
+    E --> E2[Understand Patterns]
+    E --> E3[Build Applications]
+
+    F --> F1[Study Enterprise Examples]
+    F --> F2[Production Patterns]
+    F --> F3[Real-World Scenarios]
+
+    style A fill:#e1f5ff
+    style B fill:#e8f5e9
+    style C fill:#fff4e1
+    style D fill:#f3e5f5
+    style E fill:#e0f2f1
+    style F fill:#fff9c4
+```
+
+**Note**: This diagram shows the generic learning progression. Specific concepts and their order are determined by prerequisites and documented in the main README.md.
+
+### Step-by-Step Path
+
+**Note**: This section provides a generic learning path structure. The specific topics and order should be determined by:
+
+1. Prerequisites and dependencies between concepts
+2. Complexity progression (simple to advanced)
+3. Practical application needs
+
+#### Phase 1: Setup (Required)
+
+1. **Read**: [docs/getting-started.md](../docs/getting-started.md)
+
+   - Install Node.js (use version manager)
+   - Configure Git
+   - Set up code editor
+
+2. **Read**: [docs/configuration-files.md](../docs/configuration-files.md)
+   - Understand `.nvmrc` and `.npmrc`
+   - Set up version management
+   - Verify configuration
+
+#### Phase 2: Core Concepts (Sequential)
+
+3. **Study Concept Folders** (order determined by prerequisites and complexity):
+   - Read the concept's README.md for theory and problem statement
+   - Study basic examples (typically `app.js`) for core operations
+   - Explore advanced examples for deeper understanding
+   - Study enterprise-level examples for production patterns
+   - Run examples and experiment
+   - Complete any exercises or challenges
+
+**Generic Study Pattern for Each Concept**:
+
+1. Read README.md thoroughly (theory first)
+2. Study basic examples (understand core API)
+3. Run and modify basic examples
+4. Study intermediate examples (see patterns)
+5. Study enterprise examples (production patterns)
+6. Build your own examples
+7. Review related concepts
+
+#### Phase 3: Advanced Topics (As Available)
+
+4. **Future Topics**: Follow same pattern
+   - Read README for theory
+   - Study code examples (basic → advanced → enterprise)
+   - Experiment and build
+   - Apply to real-world scenarios
+
+**Important**: The specific concepts and their order are documented in the main README.md. This ruleset provides the **framework** for learning, not the specific content order.
+
+### Learning Principles
+
+- **Don't Skip Steps**: Each phase builds on previous knowledge
+- **Practice Actively**: Type code, don't just read
+- **Experiment**: Modify examples to see what happens
+- **Take Notes**: Document your understanding
+- **Ask Questions**: Use TODOs as prompts for deeper exploration
+
+---
+
+## Contribution Guidelines
+
+### ⚠️ Ruleset Compliance Required
+
+**MANDATORY**: Before contributing to this project, you **MUST**:
+
+1. **Read This Entire Ruleset**: Understand all sections before making changes
+2. **Follow All Rules**: Every rule in this document is mandatory
+3. **Reference During Work**: Keep this ruleset open and refer to it frequently
+4. **Verify Compliance**: Before submitting, verify your contribution follows all rules
+5. **Update Ruleset If Needed**: If you discover gaps, update the ruleset first
+
+**All contributions will be reviewed against this ruleset. Non-compliant contributions will be rejected or require revision.**
+
+### Adding New Concepts
+
+When adding a new core concept (e.g., `streams/`, `modules/`):
+
+**First Step**: Review this entire ruleset to ensure you understand all requirements.
+
+#### 1. Create Folder Structure
+
+```bash
+mkdir streams
+cd streams
+touch README.md app.js
+```
+
+#### 2. Write README.md
+
+Follow the [Documentation Standards](#documentation-standards) section:
+
+- Problem statement
+- Solution explanation
+- Historical context
+- Code references
+- TODO markers
+- Cross-references
+
+#### 3. Write Code Examples
+
+Follow the [Code Example Standards](#code-example-standards) section:
+
+- Use `node:` protocol
+- ES modules syntax
+- Comprehensive comments
+- Safety warnings for unsafe operations
+- Progressive examples
+
+#### 4. Update Main README
+
+Add entry to main [README.md](README.md):
+
+```markdown
+## What You'll Learn
+
+- **Core Concepts**: Event loop, asynchronous programming, module system, streams, and buffers
+- **Streams**: Data flow and processing (NEW)
+```
+
+#### 5. Complete TODOs
+
+**MUST DO**: Before considering a concept folder complete:
+
+- Review all TODO markers in README.md and code files
+- Complete or extensively document each TODO
+- Add comprehensive explanations where TODOs indicated missing information
+- Remove completed TODOs, replace with full content
+- Document any TODOs that remain with explanation and timeline
+
+#### 6. Add Extensive Documentation
+
+**MUST DO**: Ensure README.md includes:
+
+- Extensive problem statement with historical context
+- Comprehensive solution explanation
+- Multiple examples (basic to enterprise-level)
+- Real-world use cases
+- Performance and security considerations
+- Cross-references to related concepts
+- Learning prerequisites and outcomes
+
+#### 7. Create Enterprise Examples
+
+**MUST DO**: Include at least one enterprise-level production example:
+
+- Production-ready error handling
+- Performance optimization patterns
+- Security best practices
+- Scalability considerations
+- Real-world scenarios
+- Clean architecture principles
+- Comprehensive documentation
+
+#### 8. Test Everything
+
+- Run all code examples (basic, intermediate, enterprise)
+- Verify no errors
+- Check documentation links
+- Ensure consistency with existing style
+- Verify enterprise examples demonstrate production patterns
+
+#### 9. Update Ruleset
+
+**MUST DO**: When adding a new concept section, update this ruleset:
+
+- Add the new concept to the Learning Path section if it affects recommended order
+- Update Step-by-Step Path with the new concept's study pattern
+- Update any examples that reference specific concepts to be more generic
+- Ensure the ruleset remains accurate and reflects current project structure
+- Document any new patterns or requirements discovered during implementation
+
+### Modifying Existing Content
+
+When updating existing content:
+
+1. **Maintain Style**: Follow existing documentation and code style
+2. **Update TODOs**: Remove TODO markers when addressed, add new ones as needed
+3. **Cross-Reference**: Update links if structure changes
+4. **Test**: Ensure all examples still work
+
+### Code Review Checklist
+
+Before submitting contributions:
+
+- [ ] **Read and understood this entire ruleset**
+- [ ] **Verified compliance with all ruleset requirements**
+- [ ] All code examples are executable
+- [ ] README follows documentation standards
+- [ ] Code uses `node:` protocol for core modules
+- [ ] Code uses ES modules syntax
+- [ ] Comments explain "why" not just "what"
+- [ ] Unsafe operations have warnings
+- [ ] Main README updated with new content
+- [ ] Cross-references are accurate
+- [ ] TODOs are appropriate and documented
+- [ ] Enterprise-level examples included (if adding new concept)
+- [ ] Ruleset updated (if adding new concept section)
+
+### Documentation Updates
+
+When updating documentation:
+
+1. **Accuracy**: Verify all information is correct
+2. **Completeness**: Address all aspects of the topic
+3. **Clarity**: Use clear, beginner-friendly language
+4. **Examples**: Include practical examples
+5. **Links**: Ensure all links work
+
+### Version Updates
+
+When updating Node.js or npm versions:
+
+1. Update [.nvmrc](.nvmrc)
+2. Update `engines` in [package.json](package.json)
+3. Test all examples with new version
+4. Update documentation if behavior changes
+5. Document breaking changes
+
+---
+
+## Ruleset Maintenance
+
+### Updating This Ruleset
+
+**MUST DO**: When adding new concept sections or making significant structural changes:
+
+1. **Update Learning Path Section**:
+
+   - Add new concepts to the recommended order if they affect learning sequence
+   - Update the mermaid diagram if the learning flow changes
+   - Document prerequisites and dependencies
+
+2. **Update Step-by-Step Path**:
+
+   - Add new concepts to the appropriate phase
+   - Include study pattern for the new concept
+   - Maintain logical progression
+
+3. **Update Examples**:
+
+   - Replace hardcoded concept references with generic patterns
+   - Ensure examples work for any concept, not just specific ones
+   - Update file references to use relative paths
+
+4. **Review Generic Sections**:
+
+   - Ensure Content Areas section remains generic
+   - Verify Project Organization doesn't hardcode specific concepts
+   - Check that Contribution Guidelines apply to all concepts
+
+5. **Document New Patterns**:
+   - If new organizational patterns emerge, document them
+   - Update naming conventions if needed
+   - Add new requirements to relevant sections
+
+**Rationale**: The ruleset should provide a framework that works for any Node.js concept, not just current ones. It should guide future additions without requiring major rewrites.
+
+### Ruleset Review Checklist
+
+When updating the ruleset, verify:
+
+- [ ] No hardcoded references to specific concepts (except as examples)
+- [ ] Learning path remains flexible and extensible
+- [ ] All examples use generic patterns
+- [ ] New concepts can be added without breaking existing structure
+- [ ] Documentation standards apply universally
+- [ ] Code standards are concept-agnostic
+
+---
+
+## Questions or Issues?
+
+If you have questions about these rules or encounter issues:
+
+1. **First**: Re-read the relevant section of this ruleset
+2. Review existing examples in the project
+3. Check documentation in `docs/` folder
+4. Refer to Node.js official documentation
+5. Follow the established patterns
+
+**Remember**:
+
+- This ruleset is the authoritative guide - when in doubt, follow the ruleset
+- The goal is to create a comprehensive, educational resource that helps developers understand Node.js deeply
+- Consistency and clarity are key
+- **Always follow the ruleset - it exists to ensure quality and consistency**
