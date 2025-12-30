@@ -1,0 +1,7 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit", // Fix all auto-fixable issues with eslint on save when explicitly requested
+    "source.fixAll": "explicit", // Fix all auto-fixable issues on save when explicitly requested
+    "source.organizeImports": "never" // Organize imports on save when explicitly requested - TURNED OFF
+  }
+}
