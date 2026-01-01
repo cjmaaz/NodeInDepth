@@ -1,8 +1,8 @@
-/*
- * File Descriptors: When your operating system opens a file, it assigns that open file a unique number called a file descriptor.
- * Think of it like a ticket number at a deli counter.
- * Instead of carrying around the entire file, your program just holds onto this small number that references the open file.
- * This file descriptor is what the operating system uses to know which file you're talking about when you want to read, write, or perform other operations.
+/**
+ * File Watcher Example: Using FileHandle for Efficient File Monitoring
+ *
+ * Demonstrates file watching with FileHandle for efficient repeated reads.
+ * See README.md for comprehensive FileHandle theory and advantages.
  */
 
 import fs from 'node:fs/promises';
@@ -15,9 +15,31 @@ const commandTextFile = resolve(__dirname, './command.txt');
 
 const watcher = fs.watch(commandTextFile);
 
+// FileHandle: Opens file once, keeps it open for multiple reads
+// Advantage: Reuses same handle instead of opening/closing each time
+// See README.md for detailed FileHandle explanation
+const fileHandler = await fs.open(commandTextFile, 'r');
+
+// ============================================
+// File Watcher with FileHandle
+// ============================================
+
 for await (const event of watcher) {
   console.log(event);
   if (event.eventType === 'change') {
     console.log('File Updated');
+
+    // FileHandle.read() - Reads from current position
+    // Returns: { bytesRead: number, buffer: Buffer }
+    const data = await fileHandler.read();
+
+    // Convert buffer to string for display
+    console.log(data.buffer.toString('utf-8'));
+
+    // Note: Keep handle open for multiple reads (don't close inside loop)
+    // Close handle when done (outside the loop)
   }
 }
+
+// Cleanup: Close handle when done
+// await fileHandler.close();
