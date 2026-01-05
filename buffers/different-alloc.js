@@ -46,6 +46,8 @@ for (let i = 0; i < unsafeBuffer.length; i++) {
  * Example: If poolSize is 8192 bytes, using >>> 1 gives 4096 bytes.
  *          This ensures at least 4096 bytes remain free for other allocations.
  *
+ * See [Memory](../docs/fundamentals/memory.md) for details on memory pools and allocation strategies.
+ *
  */
 
 // Buffer.poolSize defaults to 8 KiB or 8192 Bytes
@@ -59,6 +61,7 @@ for (let i = 0; i < restrictedUnsafeAlloc.length; i++) {
  * poolSize? pool?
  * What is pooling?
  * A reusable scratchpad of raw memory that Node keeps nearby so it doesn't have to ask the OS every time.
+ * See [Memory](../docs/fundamentals/memory.md) for memory pool explanation.
  */
 
 // ============================================
@@ -67,16 +70,17 @@ for (let i = 0; i < restrictedUnsafeAlloc.length; i++) {
 
 console.log('\n=== Buffer.alloc() vs Buffer.allocUnsafe() ===\n');
 
-// Buffer.alloc() - Safe, initialized to zero
+// Buffer.alloc() - Safe, initialized to zero (see [Memory](../docs/fundamentals/memory.md) for memory safety)
 console.log('1. Buffer.alloc() - Safe allocation:');
 const safeBuffer = Buffer.alloc(10);
+// Byte representation in hex (see [Binary Data](../docs/fundamentals/binary-data.md) for hex encoding)
 console.log('   Safe buffer (initialized):', safeBuffer.toString('hex'));
 console.log(
   '   All bytes are zero:',
   safeBuffer.every((byte) => byte === 0),
 ); // true
 
-// Buffer.allocUnsafe() - Unsafe, may contain old data
+// Buffer.allocUnsafe() - Unsafe, may contain old data (see [Memory](../docs/fundamentals/memory.md) for unsafe allocation)
 console.log('\n2. Buffer.allocUnsafe() - Unsafe allocation:');
 const unsafeBuffer1 = Buffer.allocUnsafe(10);
 console.log('   Unsafe buffer (may contain old data):', unsafeBuffer1.toString('hex'));
@@ -180,5 +184,5 @@ if (requestedSize <= maxSafeSize) {
 console.log('\n4. Clean up large buffers when done:');
 let largeBuffer = Buffer.alloc(100 * 1024 * 1024); // 100 MB
 // ... use buffer ...
-largeBuffer = null; // Help garbage collector
+largeBuffer = null; // Help garbage collector (see [Memory](../docs/fundamentals/memory.md) for GC details)
 console.log('   ✓ Large buffer reference cleared');

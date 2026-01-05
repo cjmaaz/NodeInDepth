@@ -13,6 +13,8 @@
  * This process allows JavaScript to handle asynchronous callbacks, timers, and I/O operations without blocking the main thread.
  * This model ensures that JavaScript remains efficient and responsive despite its single-threaded execution, by delegating long-running or waiting tasks to the environment (browser or Node.js runtime) and resuming execution when those tasks complete.
  *
+ * See [Asynchronous Programming](../docs/fundamentals/async-programming.md) for details on callbacks, promises, event loop, and async patterns.
+ *
  */
 
 import EventEmitter from 'node:events';

@@ -2,8 +2,10 @@ import { Buffer } from 'node:buffer';
 
 // Buffer is a static method
 
+// Memory allocation (see [Memory](../docs/fundamentals/memory.md) for details on heap allocation and memory pools)
 const memoryContainer = Buffer.alloc(4); // 4 Bytes
 
+// Writing hex values (see [Binary Data](../docs/fundamentals/binary-data.md) for hex explanation)
 memoryContainer[0] = 0xff; // Directly writing to index
 memoryContainer[1] = 0x32; // 0x32 -> 2 digits of hex value, 1 for each nibble (times 2) and 2 for a byte.
 memoryContainer[2] = -32;
@@ -23,9 +25,10 @@ console.log(memoryContainer[0]);
 console.log('Writing with writeInt8 method');
 memoryContainer.writeInt8(-32, 2);
 console.log(memoryContainer);
-console.log(memoryContainer.toString('hex')); // Converting the entire buffer into hex value
+// Converting the entire buffer into hex value (see [Binary Data](../docs/fundamentals/binary-data.md) for hex encoding)
+console.log(memoryContainer.toString('hex'));
 
-// Buffer.toString() supports multiple encodings:
+// Buffer.toString() supports multiple encodings (see [Binary Data](../docs/fundamentals/binary-data.md) for character encoding details):
 // 'hex' - Hexadecimal encoding (0-9, a-f), each byte represented as 2 hex digits
 // 'utf-8' - UTF-8 Unicode encoding (default), interprets bytes as UTF-8 characters
 // 'utf16le' - UTF-16 Little Endian encoding, 2 bytes per character
@@ -64,6 +67,8 @@ console.log('latin1:', exampleBuffer.toString('latin1')); // "Hello"
  * - buffer.toString() = encoding conversion of entire buffer → string
  * - buffer[index].toString() = number to string conversion of single byte → string
  *
+ * See [Binary Data](../docs/fundamentals/binary-data.md) for details on number systems (decimal, hex, binary).
+ *
  */
 
 memoryContainer[3] = 0x0;
@@ -76,8 +81,9 @@ if (memoryContainer[3] === 0) {
   );
 }
 
-// Challenge
+// Challenge: Converting between number systems
 // Binary: 0100 1000 0110 1001 0010 0001
+// See [Binary Data](../docs/fundamentals/binary-data.md) for number system conversions
 
 const challengeBuffer = Buffer.alloc(3);
 
@@ -104,10 +110,11 @@ console.log('\n=== Writing Multi-byte Integers ===');
 const multiByteBuffer = Buffer.alloc(8);
 
 // Big Endian (BE): Most significant byte first (network byte order)
+// Little Endian (LE): Least significant byte first (x86/x64 byte order)
+// See [Binary Data](../docs/fundamentals/binary-data.md) for endianness explanation
 multiByteBuffer.writeInt16BE(0x1234, 0); // Writes 0x12, 0x34
 multiByteBuffer.writeInt32BE(0x12345678, 2); // Writes 0x12, 0x34, 0x56, 0x78
 
-// Little Endian (LE): Least significant byte first (x86/x64 byte order)
 multiByteBuffer.writeInt16LE(0x1234, 0); // Writes 0x34, 0x12
 multiByteBuffer.writeInt32LE(0x12345678, 2); // Writes 0x78, 0x56, 0x34, 0x12
 

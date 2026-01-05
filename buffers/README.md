@@ -53,7 +53,7 @@ Without buffers, systems would:
 
 ### What Are Buffers?
 
-A **Buffer** is a region of memory used to store data temporarily while it is being moved from one place to another. In Node.js, buffers provide a way to work with binary data - raw bytes that don't fit neatly into JavaScript strings.
+A **Buffer** is a region of memory (see [Memory](../docs/fundamentals/memory.md)) used to store data temporarily while it is being moved from one place to another. In Node.js, buffers provide a way to work with binary data (see [Binary Data](../docs/fundamentals/binary-data.md)) - raw bytes that don't fit neatly into JavaScript strings.
 
 ### How Buffers Work
 
@@ -66,10 +66,10 @@ Buffers solve the fundamental problems by:
 
 ### Buffer Lifecycle
 
-1. **Allocation**: Memory is allocated (from pool or OS)
+1. **Allocation**: Memory is allocated (from pool or OS) (see [Memory](../docs/fundamentals/memory.md) for allocation details)
 2. **Population**: Data is written to the buffer
 3. **Processing**: Data is read and processed
-4. **Deallocation**: Memory is freed (handled by garbage collector)
+4. **Deallocation**: Memory is freed (handled by garbage collector) (see [Memory](../docs/fundamentals/memory.md) for GC details)
 
 ### Internal Representation
 
@@ -77,7 +77,7 @@ Buffers in Node.js are implemented as:
 
 - **Uint8Array**: Underlying typed array for byte storage
 - **V8 Fast Path**: Optimized for performance in V8 engine
-- **Memory Pool**: Shared pool for efficient allocation (8 KiB default)
+- **Memory Pool**: Shared pool for efficient allocation (8 KiB default) (see [Memory](../docs/fundamentals/memory.md) for memory pools)
 
 ---
 
@@ -250,7 +250,7 @@ buf1.compare(buf3); // -1 (buf1 < buf3)
 
 ## Buffer Encoding
 
-Buffers support multiple encoding formats for converting between binary data and strings:
+Buffers support multiple encoding formats (see [Binary Data](../docs/fundamentals/binary-data.md) for character encoding details) for converting between binary data and strings:
 
 ### Supported Encodings
 
@@ -288,7 +288,7 @@ buf.toString('ascii'); // "Hello"
 
 ### What is Buffer Pooling?
 
-Buffer pooling is a performance optimization technique where Node.js maintains a reusable pool of memory buffers to avoid frequent memory allocation/deallocation operations.
+Buffer pooling is a performance optimization technique (see [Memory](../docs/fundamentals/memory.md) for memory pools) where Node.js maintains a reusable pool of memory buffers to avoid frequent memory allocation/deallocation operations.
 
 ### How Node.js Implements It
 
@@ -656,19 +656,28 @@ See [production-example.js](production-example.js) for enterprise-level patterns
 ## Cross-References
 
 - **Streams**: Buffers are the fundamental unit of data in Node.js streams
-- **File System**: File operations use buffers for binary data handling
+- **File System**: File operations use buffers for binary data handling (see [File Systems](../docs/fundamentals/file-systems.md) for I/O operations)
 - **HTTP**: Request/response bodies are handled as buffers
 - **Crypto**: Cryptographic operations work with buffer data
 - **Network**: TCP/UDP sockets transmit buffer data
 
 ---
 
+## Prerequisites
+
+Before studying Buffers, it's recommended to understand:
+
+- **[Binary Data](../docs/fundamentals/binary-data.md)**: Bits, bytes, number systems (decimal, binary, hexadecimal)
+- **[Memory](../docs/fundamentals/memory.md)**: Memory allocation, heap, garbage collection, memory pools
+
+See [Fundamentals](../docs/fundamentals/) for complete list of foundational concepts.
+
 ## Learning Path
 
 ### Prerequisites
 
-- Understanding of binary data representation
-- Basic knowledge of memory management
+- Understanding of binary data representation (see [Binary Data](../docs/fundamentals/binary-data.md))
+- Basic knowledge of memory management (see [Memory](../docs/fundamentals/memory.md))
 - Familiarity with JavaScript arrays and typed arrays
 
 ### What This Enables

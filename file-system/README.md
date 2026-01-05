@@ -46,7 +46,7 @@ Node.js provides multiple approaches to file system operations, each optimized f
 
 ### Non-Blocking I/O
 
-Node.js uses non-blocking I/O for file operations:
+Node.js uses non-blocking I/O (see [File Systems](../docs/fundamentals/file-systems.md) for blocking vs non-blocking I/O) for file operations:
 
 - Operations don't block the event loop
 - Other code can execute while waiting for file I/O
@@ -65,7 +65,7 @@ The traditional Node.js async pattern using error-first callbacks.
 
 **Callback Signature**: `(err, data) => {}`
 
-**Characteristics**:
+**Characteristics** (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for callback patterns):
 
 - Error-first callback pattern: `(err, data) => {}`
 - Non-blocking: Doesn't block the event loop
@@ -94,7 +94,7 @@ Modern async/await pattern - **recommended for new code**.
 
 **Returns**: `Promise<Buffer | string>`
 
-**Characteristics**:
+**Characteristics** (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for promise patterns):
 
 - Modern async/await syntax: Cleaner, more readable
 - Better error handling: try/catch blocks
@@ -130,7 +130,7 @@ Blocking operations that stop execution until complete.
 
 **Returns**: `Buffer | string` (synchronously)
 
-**Characteristics**:
+**Characteristics** (see [File Systems](../docs/fundamentals/file-systems.md) for blocking I/O):
 
 - Blocks event loop: Stops all other operations
 - Simple syntax: No callbacks or promises
@@ -275,11 +275,11 @@ await fsp.readFile('file.txt', 'utf-8');
 
 ### What is FileHandle?
 
-FileHandle is a Promise-based wrapper around a file descriptor returned by `fs.open()`. It keeps the file open, allowing multiple operations without reopening.
+FileHandle is a Promise-based wrapper around a file descriptor (see [File Systems](../docs/fundamentals/file-systems.md) for file descriptors) returned by `fs.open()`. It keeps the file open, allowing multiple operations without reopening.
 
 ### File Descriptors
 
-When your operating system opens a file, it assigns that open file a unique number called a **file descriptor**. Think of it like a ticket number at a deli counter. Instead of carrying around the entire file, your program just holds onto this small number that references the open file.
+When your operating system opens a file, it assigns that open file a unique number called a **file descriptor** (see [File Systems](../docs/fundamentals/file-systems.md) for detailed explanation). Think of it like a ticket number at a deli counter. Instead of carrying around the entire file, your program just holds onto this small number that references the open file.
 
 ### Advantages Over `fs.readFile()`
 
@@ -686,20 +686,31 @@ See [fs-project/app.js](fs-project/app.js) for FileHandle in action:
 
 ## Cross-References
 
-- **Buffers**: File operations work with buffers for binary data
+- **Buffers**: File operations work with buffers for binary data (see [Buffers](../buffers/) for buffer operations)
 - **Streams**: For processing large files, streams are more efficient
 - **EventEmitter**: File watchers use EventEmitter patterns
 - **Path**: File paths are handled using the path module
 
 ---
 
+## Prerequisites
+
+Before studying File System operations, it's recommended to understand:
+
+- **[File Systems](../docs/fundamentals/file-systems.md)**: File descriptors, I/O operations, blocking vs non-blocking
+- **[Asynchronous Programming](../docs/fundamentals/async-programming.md)**: Callbacks, promises, async/await patterns
+- **[Buffers](../buffers/)**: Binary data handling (files often work with buffers)
+
+See [Fundamentals](../docs/fundamentals/) for complete list of foundational concepts.
+
 ## Learning Path
 
 ### Prerequisites
 
-- Understanding of asynchronous programming
-- Basic knowledge of callbacks and promises
+- Understanding of asynchronous programming (see [Asynchronous Programming](../docs/fundamentals/async-programming.md))
+- Basic knowledge of callbacks and promises (see [Asynchronous Programming](../docs/fundamentals/async-programming.md))
 - Familiarity with error handling patterns
+- Understanding of file systems (see [File Systems](../docs/fundamentals/file-systems.md))
 
 ### What This Enables
 

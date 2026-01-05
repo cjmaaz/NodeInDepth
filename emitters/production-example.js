@@ -5,13 +5,14 @@
  * using EventEmitter. It includes:
  * - Custom EventEmitter class for production use
  * - Comprehensive error handling patterns
- * - Event throttling and debouncing
+ * - Event throttling and debouncing (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for async patterns)
  * - Listener management and cleanup
  * - Performance monitoring
  * - Memory leak prevention
  * - Real-world scenario: API event system
  *
  * Use Case: Building scalable, production-ready event-driven services
+ * See [Asynchronous Programming](../docs/fundamentals/async-programming.md) for callbacks, promises, and event-driven patterns.
  */
 
 import EventEmitter from 'node:events';
@@ -73,7 +74,7 @@ class ProductionEventEmitter extends EventEmitter {
       const wrappedListener = (...args) => {
         try {
           const result = listener(...args);
-          // Handle async listeners
+          // Handle async listeners (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for promises)
           if (result instanceof Promise) {
             result.catch((error) => {
               this.emit('error', error);

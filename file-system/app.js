@@ -3,6 +3,11 @@
  *
  * Practical examples demonstrating different file reading approaches.
  * See README.md for comprehensive theory and explanations.
+ *
+ * Related fundamentals:
+ * - [File Systems](../docs/fundamentals/file-systems.md) - File descriptors, I/O operations
+ * - [Asynchronous Programming](../docs/fundamentals/async-programming.md) - Callbacks, promises, async/await
+ * - [Buffers](../buffers/) - Binary data handling for file operations
  */
 
 import fs from 'node:fs';
@@ -20,7 +25,7 @@ const logTextFile = resolve(__dirname, './log.txt');
 
 console.log('=== Callback-Based File Reading ===\n');
 
-// Error-first callback pattern: (err, data) => {}
+// Error-first callback pattern: (err, data) => {} (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for callbacks)
 fs.readFile(logTextFile, 'utf-8', (err, data) => {
   if (err) {
     console.error('Error reading file:', err.message);
@@ -35,7 +40,7 @@ fs.readFile(logTextFile, (err, data) => {
     console.error('Error:', err.message);
     return;
   }
-  // data is a Buffer when no encoding specified
+  // data is a Buffer when no encoding specified (see [Buffers](../buffers/) for buffer operations)
   console.log('Callback buffer:', data.toString('utf-8'));
 });
 
@@ -45,7 +50,7 @@ fs.readFile(logTextFile, (err, data) => {
 
 console.log('\n=== Promise-Based File Reading ===\n');
 
-// Using async/await (recommended)
+// Using async/await (recommended) (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for async/await)
 async function readFileWithPromise() {
   try {
     const data = await fsp.readFile(logTextFile, 'utf-8');
@@ -84,7 +89,7 @@ readFileAsBuffer();
 // ============================================
 
 // See fs-types.js for synchronous examples
-// Note: Synchronous operations block the event loop
+// Note: Synchronous operations block the event loop (see [File Systems](../docs/fundamentals/file-systems.md) for blocking vs non-blocking I/O)
 
 // ============================================
 // Key Distinctions: Error Handling
@@ -92,14 +97,14 @@ readFileAsBuffer();
 
 console.log('\n=== Error Handling Comparison ===\n');
 
-// Callback: Error-first pattern
+// Callback: Error-first pattern (see [Asynchronous Programming](../docs/fundamentals/async-programming.md))
 fs.readFile('nonexistent.txt', 'utf-8', (err, data) => {
   if (err) {
     console.log('Callback error handling: Error-first pattern');
   }
 });
 
-// Promise: try/catch
+// Promise: try/catch (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for promise error handling)
 async function errorHandlingExample() {
   try {
     await fsp.readFile('nonexistent.txt', 'utf-8');
@@ -136,7 +141,7 @@ async function linearFlowExample() {
 // Key Distinctions: Composing Operations
 // ============================================
 
-// Promise: Easy composition with Promise.all()
+// Promise: Easy composition with Promise.all() (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for promise composition)
 async function composeOperations() {
   // Read multiple files concurrently
   const [data1, data2] = await Promise.all([

@@ -59,7 +59,7 @@ The core challenge is:
 
 ### Event Loop Integration
 
-EventEmitter integrates with Node.js's event loop:
+EventEmitter integrates with Node.js's event loop (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for event loop details):
 
 - **Synchronous Emission**: `emit()` calls listeners synchronously (immediately)
 - **Asynchronous Patterns**: Events enable callback-based async patterns
@@ -68,7 +68,7 @@ EventEmitter integrates with Node.js's event loop:
 
 ### Pub/Sub Pattern Implementation
 
-EventEmitter implements the Publish/Subscribe pattern:
+EventEmitter implements the Publish/Subscribe pattern (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for Pub/Sub details):
 
 - **Publisher**: Object that emits events (`emit()`)
 - **Subscriber**: Object that listens to events (`on()`, `once()`)
@@ -690,17 +690,25 @@ See [production-example.js](production-example.js) for enterprise-level patterns
 - **Streams**: Streams extend EventEmitter for data flow events
 - **Process**: Process object emits system-level events
 - **HTTP**: HTTP servers extend EventEmitter for request/response events
-- **File System**: File watchers use EventEmitter for change events
+- **File System**: File watchers use EventEmitter for change events (see [File Systems](../docs/fundamentals/file-systems.md) for file operations)
 - **Network**: Network sockets emit connection and data events
 
 ---
+
+## Prerequisites
+
+Before studying EventEmitter, it's recommended to understand:
+
+- **[Asynchronous Programming](../docs/fundamentals/async-programming.md)**: Callbacks, promises, async/await, event loop, event-driven patterns
+
+See [Fundamentals](../docs/fundamentals/) for complete list of foundational concepts.
 
 ## Learning Path
 
 ### Prerequisites
 
-- Understanding of JavaScript functions and callbacks
-- Basic knowledge of asynchronous programming
+- Understanding of JavaScript functions and callbacks (see [Asynchronous Programming](../docs/fundamentals/async-programming.md))
+- Basic knowledge of asynchronous programming (see [Asynchronous Programming](../docs/fundamentals/async-programming.md))
 - Familiarity with object-oriented programming
 
 ### What This Enables

@@ -3,6 +3,10 @@
  *
  * Demonstrates file watching with FileHandle for efficient repeated reads.
  * See README.md for comprehensive FileHandle theory and advantages.
+ *
+ * Related fundamentals:
+ * - [File Systems](../docs/fundamentals/file-systems.md) - FileHandle, file descriptors, I/O operations
+ * - [Asynchronous Programming](../docs/fundamentals/async-programming.md) - async/await patterns
  */
 
 import fs from 'node:fs/promises';
@@ -15,7 +19,7 @@ const commandTextFile = resolve(__dirname, './command.txt');
 
 const watcher = fs.watch(commandTextFile);
 
-// FileHandle: Opens file once, keeps it open for multiple reads
+// FileHandle: Opens file once, keeps it open for multiple reads (see [File Systems](../docs/fundamentals/file-systems.md) for file descriptors)
 // Advantage: Reuses same handle instead of opening/closing each time
 // See README.md for detailed FileHandle explanation
 const fileHandler = await fs.open(commandTextFile, 'r');
@@ -24,6 +28,7 @@ const fileHandler = await fs.open(commandTextFile, 'r');
 // File Watcher with FileHandle
 // ============================================
 
+// async/await pattern (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for async patterns)
 for await (const event of watcher) {
   console.log(event);
   if (event.eventType === 'change') {

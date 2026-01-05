@@ -5,6 +5,7 @@
  * Shows the difference between reading files as raw buffers vs decoded strings.
  *
  * Note: Synchronous operations block the event loop. Use with caution in production.
+ * See [File Systems](../docs/fundamentals/file-systems.md) for blocking vs non-blocking I/O.
  * See README.md for detailed explanations and when to use synchronous operations.
  */
 
@@ -21,7 +22,7 @@ const logTextFile = resolve(__dirname, './log.txt');
 // Synchronous File Reading
 // ============================================
 
-// Read file without encoding - returns Buffer (binary data)
+// Read file without encoding - returns Buffer (binary data) (see [Buffers](../buffers/) for buffer operations)
 let data = fs.readFileSync(logTextFile);
 console.log('Buffer (binary data):', data);
 console.log('Type:', typeof data); // object
@@ -37,7 +38,7 @@ console.log('Type:', typeof data); // string
 // Buffer vs String Encoding
 // ============================================
 
-// Reading as Buffer gives you raw binary data
+// Reading as Buffer gives you raw binary data (see [Binary Data](../docs/fundamentals/binary-data.md) for hex encoding)
 const bufferData = fs.readFileSync(logTextFile);
 console.log('\n=== Buffer Operations ===');
 console.log('Buffer length (bytes):', bufferData.length);
