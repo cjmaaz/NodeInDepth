@@ -22,6 +22,9 @@ const commandTextFile = resolve(__dirname, './command.txt');
 // See README.md for detailed FileHandle explanation
 const commandFileHandler = await fs.open(commandTextFile, 'r');
 
+// CONSTANTS
+const CREATE_FILE = 'create a file';
+
 commandFileHandler.on('change', async () => {
   // FileHandle.read() - Reads from current position
   // Returns: { bytesRead: number, buffer: Buffer }
@@ -54,7 +57,14 @@ commandFileHandler.on('change', async () => {
   await commandFileHandler.read(buff, offset, length, position);
 
   // console.log(buff); // <Buffer 68 65 6c 6c 6f 0a> // "hello" with new line
-  console.log(buff.toString('utf-8'));
+  const commandText = buff.toString('utf-8');
+
+  // Create a file
+  // create a file <PATH>
+  if (commandText.includes(CREATE_FILE)) {
+    const filePath = commandText.substring(CREATE_FILE.length + 1);
+    await createFile(filePath);
+  }
 });
 
 // ============================================
@@ -70,3 +80,18 @@ for await (const event of watcher) {
 
 // Cleanup: Close handle when done
 // await commandFileHandler.close();
+
+async function createFile(path) {
+  try {
+    // We want to check whether or not we already have that file.
+    let existingFileHandle = await fs.open(path, 'r');
+    existingFileHandle.close();
+    // We already have that file.
+    return console.log(`The file path ${path} already exists.`);
+  } catch (error) {
+    // We don't have that file, now we should create it.
+    const newFile = await fs.open(path, 'w');
+    console.log('A new file created successfully.');
+    newFile.close();
+  }
+}
