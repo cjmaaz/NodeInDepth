@@ -39,15 +39,20 @@ commandFileHandler.on('change', async () => {
   // The location at which we want to start filling our buffer.
   const length = buff.byteLength;
   // How many bytes we want to read
-  console.log(`Size of file: ${size} and byteLength of buffer: ${length}`);
+  // console.log(`Size of file: ${size} and byteLength of buffer: ${length}`); // Size of file: 6 and byteLength of buffer: 6
   // The position that we want to start reading the file from
   const position = 0;
   const offset = 0;
 
   // We always want to read the whole content (from the beginning all the way to the end).
   // The other way is mentioned above, this method is for us to understand what other way read method works.
-  const content = await commandFileHandler.read(buff, offset, length, position);
-  console.log(content);
+  // console.log(content);  const content = await commandFileHandler.read(buff....
+  // We can directly look into buff variable as the read content will be saved to passed parameter buffer
+
+  await commandFileHandler.read(buff, offset, length, position);
+
+  // console.log(buff); // <Buffer 68 65 6c 6c 6f 0a> // "hello" with new line
+  console.log(buff.toString('utf-8'));
 });
 
 // ============================================
