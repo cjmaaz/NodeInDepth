@@ -105,27 +105,27 @@ commandFileHandler.on('change', async () => {
     await renameFile(oldFilePath, newFilePath);
   }
 
-  // Add to the file command: "add to the file <path> this content: <content>"
-  // Example: "add to the file ./test.txt this content: Hello, world!"
+  // Add to the file command: "add to the file <path> with this content: <content>"
+  // Example: "add to the file ./test.txt with this content: Hello, world!"
   if (commandText.includes(ADD_TO_FILE)) {
     // Extract text after "add to the file " (note the space after "file")
     const afterCommand = commandText.substring(ADD_TO_FILE.length + 1).trim();
-    // Find the space separating file path from "this content:"
+    // Find the space separating file path from "with this content:"
     const spaceIndex = afterCommand.indexOf(' ');
     if (spaceIndex === -1) {
       console.log('Error: Both file path and content are required.');
       return;
     }
     const filePath = afterCommand.substring(0, spaceIndex).trim();
-    // Extract content after "this content:" keyword
+    // Extract content after "with this content:" keyword
     const afterPath = afterCommand.substring(spaceIndex + 1).trim();
-    if (!afterPath.includes('this content:')) {
-      console.log('Error: "this content:" keyword is required before the content.');
+    if (!afterPath.includes('with this content:')) {
+      console.log('Error: "with this content:" keyword is required before the content.');
       return;
     }
-    const content = afterPath.split('this content:')[1]?.trim();
+    const content = afterPath.split('with this content:')[1]?.trim();
     if (!content) {
-      console.log('Error: Content is required after "this content:".');
+      console.log('Error: Content is required after "with this content:".');
       return;
     }
     await addToFile(filePath, content);
@@ -152,11 +152,11 @@ async function createFile(path) {
     const existingFileHandle = await fs.open(path, 'r');
     existingFileHandle.close();
     // File already exists
-    console.log(`The file path ${path} already exists.`);
+    console.log(`The file at path ${path} already exists.`);
   } catch (error) {
     // File doesn't exist, so we create it
     const newFile = await fs.open(path, 'w');
-    console.log('A new file created successfully.');
+    console.log('A new file was created successfully.');
     newFile.close();
   }
 }
@@ -170,7 +170,7 @@ async function deleteFile(path) {
     await fs.unlink(path);
     console.log(`The file at path ${path} was deleted successfully.`);
   } catch (error) {
-    console.log(`The file path ${path} does not exist.`);
+    console.log(`The file at path ${path} does not exist.`);
   }
 }
 
@@ -183,7 +183,7 @@ async function renameFile(oldPath, newPath) {
     await fs.rename(oldPath, newPath);
     console.log(`The file at path ${oldPath} was renamed to ${newPath} successfully.`);
   } catch (error) {
-    console.log(`The file path ${oldPath} does not exist.`);
+    console.log(`The file at path ${oldPath} does not exist.`);
   }
 }
 
@@ -196,6 +196,6 @@ async function addToFile(path, content) {
     await fs.appendFile(path, content);
     console.log(`Content was added to the file at path ${path} successfully.`);
   } catch (error) {
-    console.log(`The file path ${path} does not exist.`);
+    console.log(`The file at path ${path} does not exist.`);
   }
 }
