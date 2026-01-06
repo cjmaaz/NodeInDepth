@@ -28,21 +28,28 @@ const fileHandler = await fs.open(commandTextFile, 'r');
 // File Watcher with FileHandle
 // ============================================
 
-// async/await pattern (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for async patterns)
 for await (const event of watcher) {
   console.log(event);
   if (event.eventType === 'change') {
-    console.log('File Updated');
-
     // FileHandle.read() - Reads from current position
     // Returns: { bytesRead: number, buffer: Buffer }
-    const data = await fileHandler.read();
+    // const data = await fileHandler.read();
 
     // Convert buffer to string for display
-    console.log(data.buffer.toString('utf-8'));
+    // console.log(data.buffer.toString('utf-8'));
 
     // Note: Keep handle open for multiple reads (don't close inside loop)
     // Close handle when done (outside the loop)
+
+    const size = (await fileHandler.stat()).size;
+    const buff = Buffer.alloc(size);
+    const length = buff.byteLength;
+    console.log(`Size of file: ${size} and byteLength of buffer: ${length}`);
+    const position = 0;
+    const offset = 0;
+
+    const content = await fileHandler.read(buff, offset, length, position);
+    console.log(content);
   }
 }
 
