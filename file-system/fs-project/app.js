@@ -154,10 +154,14 @@ async function createFile(path) {
     // File already exists
     console.log(`The file at path ${path} already exists.`);
   } catch (error) {
-    // File doesn't exist, so we create it
-    const newFile = await fs.open(path, 'w');
-    console.log('A new file was created successfully.');
-    newFile.close();
+    if (error.code === 'ENOENT') {
+      // File doesn't exist, so we create it
+      const newFile = await fs.open(path, 'w');
+      console.log('A new file was created successfully.');
+      newFile.close();
+    } else {
+      console.log(`An error occurred while creating the file at path ${path}: ${error.message}`);
+    }
   }
 }
 
@@ -168,9 +172,16 @@ async function deleteFile(path) {
     existingFileHandle.close();
     // File exists, so we delete it
     await fs.unlink(path);
+    // Alternatively, we can use fs.rm() or fs.rmdir()
+    // await fs.rm(path) will delete the file or directory at the given path.
+    // await fs.rmdir(path) will delete the directory at the given path (deprecated, use fs.rm instead).
     console.log(`The file at path ${path} was deleted successfully.`);
   } catch (error) {
-    console.log(`The file at path ${path} does not exist.`);
+    if (error.code === 'ENOENT') {
+      console.log(`The file at path ${path} does not exist.`);
+    } else {
+      console.log(`An error occurred while deleting the file at path ${path}: ${error.message}`);
+    }
   }
 }
 
@@ -183,7 +194,11 @@ async function renameFile(oldPath, newPath) {
     await fs.rename(oldPath, newPath);
     console.log(`The file at path ${oldPath} was renamed to ${newPath} successfully.`);
   } catch (error) {
-    console.log(`The file at path ${oldPath} does not exist.`);
+    if (error.code === 'ENOENT') {
+      console.log(`The file at path ${oldPath} does not exist.`);
+    } else {
+      console.log(`An error occurred while renaming the file at path ${oldPath}: ${error.message}`);
+    }
   }
 }
 
@@ -194,8 +209,25 @@ async function addToFile(path, content) {
     existingFileHandle.close();
     // File exists, so we append content to it
     await fs.appendFile(path, content);
+    // Alternatively, we can use fs.writeFile() to write to the file, but it will truncate the file if it exists.
+    // await fs.writeFile(path, content, 'utf-8');
     console.log(`Content was added to the file at path ${path} successfully.`);
   } catch (error) {
-    console.log(`The file at path ${path} does not exist.`);
+    if (error.code === 'ENOENT') {
+      console.log(`The file at path ${path} does not exist.`);
+    } else {
+      console.log(
+        `An error occurred while adding content to the file at path ${path}: ${error.message}`,
+      );
+    }
   }
 }
+
+// File System Flags:
+// r: read, fail if file does not exist
+// w: write, create if file does not exist, truncate if file exists
+// a: append, create if file does not exist
+// x: exclusive creation, fail if file exists
+// r+: read and write, fail if file does not exist
+// w+: read and write, create if file does not exist, truncate if file exists
+// a+: read and write, create if file does not exist
