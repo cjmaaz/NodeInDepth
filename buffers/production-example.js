@@ -5,11 +5,11 @@
  * using buffers. It includes:
  * - High-performance buffer processing pipeline
  * - Error handling and recovery
- * - Memory-efficient streaming
+ * - Memory-efficient streaming (see [Memory](../docs/fundamentals/memory.md) for memory management)
  * - Performance monitoring
  * - Resource cleanup and memory management
  * - Input validation and security
- * - Real-world scenario: Processing binary data chunks
+ * - Real-world scenario: Processing binary data chunks (see [Binary Data](../docs/fundamentals/binary-data.md) for binary data fundamentals)
  *
  * Use Case: Processing large binary files or network data streams efficiently
  */
@@ -167,6 +167,7 @@ class ProductionBufferProcessor {
 
       // Memory management: Clear processed chunk reference to help GC
       // (chunks array still holds reference, but we're done with it)
+      // See [Memory](../docs/fundamentals/memory.md) for garbage collection details
     }
 
     // Calculate final metrics

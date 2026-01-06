@@ -26,20 +26,19 @@ alwaysApply: true
 1. ✅ **Read this entire ruleset before contributing**
 2. ✅ **Follow all ruleset requirements without exception**
 3. ✅ One folder per core concept
-4. ✅ README.md in every concept folder with extensive information
+4. ✅ README.md in every concept folder with **prerequisites section** linking to fundamentals
 5. ✅ Use `node:` protocol for core modules
 6. ✅ Use ES modules (`import/export`)
-7. ✅ Explain "why" in comments, not just "what"
-8. ✅ Mark unsafe operations with warnings
-9. ✅ Include extensive problem statements in documentation
-10. ✅ Test all code examples before committing (basic → enterprise)
-11. ✅ Update main README when adding content
-12. ✅ Follow version requirements strictly
-13. ✅ **Complete all TODOs** or document why they remain
-14. ✅ **Add extensive information** when completing TODOs
+7. ✅ **Add cross-references** to fundamentals in code comments and README
+8. ✅ Explain "why" in comments, not just "what"
+9. ✅ Mark unsafe operations with warnings
+10. ✅ Include extensive problem statements in documentation
+11. ✅ Test all code examples before committing (basic → enterprise)
+12. ✅ Update main README when adding content
+13. ✅ Follow version requirements strictly
+14. ✅ **Complete all TODOs** or document why they remain
 15. ✅ **Include enterprise-level production examples** in each concept folder
-16. ✅ **Update this ruleset** when adding new concept sections
-17. ✅ **Update Learning Path** when adding concepts that affect recommended order
+16. ✅ **Update fundamentals docs** with "Used In" sections when adding concepts
 
 ### Must-Not-Do's
 
@@ -49,13 +48,13 @@ alwaysApply: true
 4. ❌ Don't import core modules without `node:` prefix
 5. ❌ Don't commit non-executable code examples
 6. ❌ Don't skip README files in concept folders
-7. ❌ Don't ignore version requirements
-8. ❌ Don't add content without updating main README
-9. ❌ Don't use vague or unclear comments
-10. ❌ Don't skip safety warnings for unsafe operations
-11. ❌ Don't leave TODOs unaddressed without documentation
-12. ❌ Don't add concepts without enterprise-level examples
-13. ❌ Don't add new sections without updating this ruleset
+7. ❌ Don't skip prerequisites sections in READMEs
+8. ❌ Don't add code without cross-references to fundamentals
+9. ❌ Don't ignore version requirements
+10. ❌ Don't add content without updating main README
+11. ❌ Don't use vague or unclear comments
+12. ❌ Don't skip safety warnings for unsafe operations
+13. ❌ Don't add concepts without enterprise-level examples
 14. ❌ Don't hardcode specific concepts in generic sections of the ruleset
 
 ---
@@ -106,14 +105,26 @@ alwaysApply: true
 NodeInDepth/
 ├── docs/                    # General documentation and guides
 │   ├── getting-started.md   # Setup and prerequisites
-│   └── configuration-files.md  # Configuration explanations
+│   ├── configuration-files.md  # Configuration explanations
+│   └── fundamentals/        # Foundational concepts
+│       ├── README.md        # Fundamentals overview
+│       ├── binary-data.md   # Bits, bytes, number systems
+│       ├── memory.md        # Memory concepts
+│       ├── async-programming.md  # Async patterns
+│       └── file-systems.md  # File system basics
 ├── buffers/                 # Buffer concept folder
 │   ├── README.md           # Concept explanation
 │   ├── app.js              # Main examples
-│   └── different-alloc.js  # Specific topic examples
+│   └── production-example.js # Enterprise examples
 ├── emitters/               # EventEmitter concept folder
-│   ├── README.md           # Concept explanation (if exists)
-│   └── app.js              # Examples
+│   ├── README.md           # Concept explanation
+│   ├── app.js              # Examples
+│   └── production-example.js # Enterprise examples
+├── file-system/            # File System concept folder
+│   ├── README.md           # Concept explanation
+│   ├── app.js              # Async examples
+│   ├── fs-types.js         # Sync examples
+│   └── fs-project/         # Project examples
 ├── package.json            # Project configuration
 ├── .nvmrc                  # Node.js version specification
 ├── .npmrc                  # npm configuration
@@ -171,17 +182,26 @@ graph TD
 
     B --> B1[getting-started.md]
     B --> B2[configuration-files.md]
+    B --> B3[fundamentals/]
+
+    B3 --> B3A[README.md]
+    B3 --> B3B[binary-data.md]
+    B3 --> B3C[memory.md]
+    B3 --> B3D[async-programming.md]
+    B3 --> B3E[file-systems.md]
 
     C --> C1[buffers/]
     C --> C2[emitters/]
-    C --> C3[Future Concepts]
+    C --> C3[file-system/]
+    C --> C4[Future Concepts]
 
     C1 --> C1A[README.md]
     C1 --> C1B[app.js]
-    C1 --> C1C[other examples]
+    C1 --> C1C[production-example.js]
 
     C2 --> C2A[README.md]
     C2 --> C2B[app.js]
+    C2 --> C2C[production-example.js]
 
     D --> D1[package.json]
     D --> D2[.nvmrc]
@@ -190,6 +210,7 @@ graph TD
     style A fill:#e1f5ff
     style C fill:#fff4e1
     style B fill:#e8f5e9
+    style B3 fill:#fff9c4
     style D fill:#fce4ec
 ```
 
@@ -199,64 +220,88 @@ graph TD
 
 ### Topic Organization
 
-Content areas are organized into concept folders, each representing a core Node.js topic. The project structure is designed to be extensible - new concepts can be added following the established patterns without breaking existing organization.
+Content areas are organized into:
 
-**Note**: This section documents the organizational pattern. For current topics, refer to the main [README.md](../README.md) which lists all available concepts. The ruleset focuses on **how** to organize content, not **what** content currently exists.
+- **Concept Folders**: Core Node.js topics (buffers, emitters, file-system, etc.)
+- **Fundamentals**: Foundational concepts in `docs/fundamentals/` (binary-data, memory, async-programming, file-systems)
 
-### Example Concept Structure
+### Concept Folder Structure
 
 Each concept folder follows this pattern:
 
 ```
 concept-name/
-├── README.md           # Comprehensive concept explanation
-├── app.js              # Main examples (basic to advanced)
-├── advanced-example.js # Enterprise-level production examples (optional)
+├── README.md           # With prerequisites section linking to fundamentals
+├── app.js              # Main examples with cross-references
+├── production-example.js # Enterprise-level examples
 └── [other-files].js   # Additional subtopic examples
 ```
 
-### Content Categories
+### Fundamentals Structure
 
-Concepts are typically organized into these categories:
+Foundational concepts are documented in `docs/fundamentals/`:
 
-- **Core APIs**: Buffers, Streams, File System, HTTP, etc.
-- **Architecture**: EventEmitter, Process, Cluster, etc.
-- **System**: Modules, Crypto, Path, etc.
-- **Configuration**: Project setup, version management, etc.
+```
+docs/fundamentals/
+├── README.md           # Overview and learning path
+├── binary-data.md      # Bits, bytes, number systems, endianness, encoding
+├── memory.md           # Memory allocation, heap, GC, pools
+├── async-programming.md # Callbacks, promises, event loop
+└── file-systems.md     # File descriptors, I/O, blocking vs non-blocking
+```
 
-**Important**: The specific topics listed above are examples. The actual topics in the project are documented in the main README.md and may expand over time. This ruleset provides the framework for organizing any Node.js concept.
+**Each fundamental doc MUST include**:
+
+- Problem statement and solution explanation
+- Comprehensive coverage of the concept
+- "Used In" section linking to concept folders that use it
+- "Related Concepts" section
 
 ### Content Requirements
 
 Each content area **MUST** include:
 
-1. **Problem Statement**: What problem does this concept solve?
-2. **Solution Explanation**: How does this concept address the problem?
-3. **Historical Context**: Why was this needed? (when relevant)
-4. **Code Examples**: Executable demonstrations
-5. **TODO Markers**: Areas identified for future expansion
-6. **Cross-References**: Links to related concepts
+1. **Prerequisites Section**: Links to required fundamentals (REQUIRED)
+2. **Problem Statement**: What problem does this concept solve?
+3. **Solution Explanation**: How does this concept address the problem?
+4. **Historical Context**: Why was this needed? (when relevant)
+5. **Code Examples**: Executable demonstrations with cross-references
+6. **Cross-References**: Links to fundamentals and related concepts
+7. **Enterprise Examples**: Production-ready patterns
+
+### Fundamentals Documentation
+
+**REQUIRED**: Foundational concepts are documented in `docs/fundamentals/`:
+
+- **Structure**: Each fundamental has its own `.md` file
+- **Index**: `docs/fundamentals/README.md` provides overview and learning path
+- **Cross-References**: Each fundamental doc includes "Used In" section linking to concept folders
+- **Coverage**: Fundamentals explain precursors needed for concept folders
+
+**Current Fundamentals**:
+
+- `binary-data.md`: Bits, bytes, number systems, endianness, character encoding
+- `memory.md`: Memory allocation, heap, garbage collection, memory pools
+- `async-programming.md`: Callbacks, promises, async/await, event loop deep dive
+- `file-systems.md`: File descriptors, I/O operations, blocking vs non-blocking
+
+**When Adding New Concepts**:
+
+- Identify required fundamentals and ensure they're documented
+- Add "Used In" sections to relevant fundamentals docs
+- Link to fundamentals in code comments and README prerequisites
 
 ### Adding New Topics
 
-When adding new topics, follow this structure and ensure you:
+When adding new topics:
 
-1. Create a concept folder following naming conventions
-2. Include comprehensive README.md with problem/solution explanation
-3. Add code examples from basic to enterprise-level production examples
-4. Complete all TODOs or document why they remain
-5. Update the main README.md with the new topic
-6. **MUST UPDATE THIS RULESET** (see [Ruleset Maintenance](#ruleset-maintenance) section)
-
-**Potential Topics** (examples - not exhaustive):
-
-- **Streams**: Data flow and processing
-- **Modules**: ES modules vs CommonJS
-- **Process**: Process management and clustering
-- **File System**: File operations and I/O
-- **HTTP**: Server creation and request handling
-- **Crypto**: Security and encryption
-- **Cluster**: Multi-process applications
+1. **Identify Prerequisites**: Determine which fundamentals are needed
+2. **Create Concept Folder**: Follow naming conventions (lowercase, plural)
+3. **Write README.md**: Include prerequisites section, problem/solution, cross-references
+4. **Add Code Examples**: Basic → intermediate → enterprise-level
+5. **Add Cross-References**: Link to fundamentals in code comments and README
+6. **Update Main README**: Add new topic to documentation list
+7. **Update Fundamentals**: Add "Used In" references if new concept uses fundamentals
 
 ---
 
@@ -304,18 +349,32 @@ module.exports = {};
 
 #### Inline Comments
 
-Comments should explain **"why"** not just **"what"**:
+Comments should explain **"why"** not just **"what"**, and include cross-references to fundamentals when introducing concepts:
 
 ```javascript
-// ✅ GOOD - Explains why
-// Buffer.poolSize defaults to 8 KiB or 8192 Bytes
-// Node keeps this pool nearby so it doesn't have to ask the OS every time
-const restrictedUnsafeAlloc = Buffer.alloc(Buffer.poolSize >>> 1);
+// ✅ GOOD - Explains why with cross-reference
+// Memory allocation (see [Memory](../docs/fundamentals/memory.md) for details on heap allocation)
+const buffer = Buffer.alloc(1024);
 
-// ❌ BAD - Only states what
-// Allocate buffer with pool size
-const restrictedUnsafeAlloc = Buffer.alloc(Buffer.poolSize >>> 1);
+// Writing hex value (see [Binary Data](../docs/fundamentals/binary-data.md) for hex explanation)
+memoryContainer[0] = 0xff;
+
+// ❌ BAD - Only states what, no cross-reference
+// Allocate buffer
+const buffer = Buffer.alloc(1024);
 ```
+
+#### Cross-Reference Requirements
+
+**MANDATORY**: When introducing foundational concepts in code, add inline cross-references:
+
+- **Binary/Hex/Decimal**: Link to `docs/fundamentals/binary-data.md`
+- **Memory/Allocation/Heap**: Link to `docs/fundamentals/memory.md`
+- **Callbacks/Promises/Async**: Link to `docs/fundamentals/async-programming.md`
+- **File Descriptors/I/O**: Link to `docs/fundamentals/file-systems.md`
+- **Related Concepts**: Link to other concept folders (e.g., `../buffers/`)
+
+**Format**: `(see [Concept Name](../docs/fundamentals/concept.md) for details)`
 
 #### Block Comments
 
@@ -324,17 +383,7 @@ Use block comments for:
 - Multi-line explanations
 - Historical context
 - Complex algorithm explanations
-- TODO markers
-
-Example from [buffers/app.js](buffers/app.js):
-
-```javascript
-/*
- * When we access the element directly by providing the index, we get the response in decimal (base 10).
- * Note: this .toString() on memoryContainer is different than to string on memoryContainer[0].
- * TODO: Why is it different?
- */
-```
+- Cross-references to comprehensive documentation
 
 ### Safety Warnings
 
@@ -415,11 +464,13 @@ class ProductionBufferProcessor {
 // 1. Import statements
 import { Buffer } from 'node:buffer';
 
-// 2. Basic example with explanation
+// 2. Basic example with explanation and cross-reference
+// Memory allocation (see [Memory](../docs/fundamentals/memory.md) for details)
 const memoryContainer = Buffer.alloc(4); // 4 Bytes
 
-// 3. Operations with comments
-memoryContainer[0] = 0xff; // Directly writing to index
+// 3. Operations with comments and cross-references
+// Writing hex value (see [Binary Data](../docs/fundamentals/binary-data.md) for hex explanation)
+memoryContainer[0] = 0xff;
 
 // 4. Output demonstration
 console.log(memoryContainer.toString('hex'));
@@ -444,44 +495,57 @@ Each concept folder **MUST** have a `README.md` that follows this structure:
 ### The problem that [concept] solves
 ```
 
-#### 2. Problem Statement
+#### 2. Prerequisites Section (REQUIRED)
 
-Explain the fundamental problem(s) the concept addresses:
+```markdown
+## Prerequisites
+
+Before studying this concept, it's recommended to understand:
+
+- **[Fundamental Name](../docs/fundamentals/fundamental.md)**: Brief description
+- **[Another Fundamental](../docs/fundamentals/another.md)**: Brief description
+
+See [Fundamentals](../docs/fundamentals/) for complete list of foundational concepts.
+```
+
+#### 3. Problem Statement
+
+Explain the fundamental problem(s) with inline cross-references to fundamentals:
 
 ```markdown
 Early computers ran into 3 stubborn realities:
 
-1. Different speeds everywhere
+1. Different speeds everywhere (see [Memory](../docs/fundamentals/memory.md) for speed differences)
 2. Devices don't speak in neat chunks
 3. Stopping CPUs is expensive
 ```
 
-#### 3. Solution Explanation
+#### 4. Solution Explanation
 
-Explain how the concept solves the problem:
+Explain how the concept solves the problem with cross-references:
 
 ```markdown
 > Buffers were invented to decouple timing.
 
-Buffer is a region of memory used to store data temporarily...
+Buffer is a region of memory (see [Memory](../docs/fundamentals/memory.md)) used to store data temporarily...
 ```
 
-#### 4. Code References
+#### 5. Code References
 
 Link to code examples in the same folder:
 
 ```markdown
 See [app.js](app.js) for basic examples.
-See [different-alloc.js](different-alloc.js) for allocation strategies.
+See [production-example.js](production-example.js) for enterprise patterns.
 ```
 
-#### 5. TODO Markers
-
-Mark areas for future expansion:
+#### 6. Cross-References Section
 
 ```markdown
-TODO: More info to be added here based on comments and code present in the js file.
-TODO: More examples of buffer and related methods should be added.
+## Cross-References
+
+- **[Related Concept](../related-concept/)**: How concepts relate
+- **[Fundamentals](../docs/fundamentals/)**: Foundational concepts used
 ```
 
 **MUST DO - TODO Completion**:
@@ -489,56 +553,11 @@ TODO: More examples of buffer and related methods should be added.
 When working on a concept folder:
 
 1. **Review All TODOs**: Check README.md and all code files for TODO markers
-2. **Prioritize Completion**: Address TODOs systematically, starting with:
-   - Missing explanations in README.md
-   - Incomplete code examples
-   - Unanswered questions in comments
-   - Missing enterprise-level examples
-3. **Extensive Documentation**: When completing TODOs, add **extensive information**:
-   - Detailed explanations (not just brief notes)
-   - Multiple examples demonstrating different aspects
-   - Real-world use cases and scenarios
-   - Common pitfalls and how to avoid them
-   - Performance considerations
-   - Security implications
-   - Best practices and patterns
-4. **Remove Completed TODOs**: Once addressed, remove the TODO marker and replace with comprehensive content
-5. **Document Remaining TODOs**: If a TODO cannot be completed immediately, add a note explaining why and when it will be addressed
-
-**Example of Extensive TODO Completion**:
-
-Instead of:
-
-```markdown
-TODO: Explain buffer pooling
-```
-
-Complete with:
-
-```markdown
-### Buffer Pooling
-
-Buffer pooling is a performance optimization technique where Node.js maintains a reusable pool of memory buffers to avoid frequent memory allocation/deallocation operations.
-
-**Why Pooling Matters**:
-
-- Memory allocation is expensive (OS calls)
-- Frequent allocation causes memory fragmentation
-- Pooling reduces garbage collection pressure
-
-**How Node.js Implements It**:
-
-- Default pool size: 8 KiB (8192 bytes)
-- Accessed via `Buffer.poolSize`
-- Used internally for `Buffer.allocUnsafe()` operations
-- Automatically managed by the runtime
-
-**Production Considerations**:
-
-- Pool size can be adjusted (though rarely needed)
-- Understanding pooling helps optimize memory usage
-- Important for high-throughput applications
-```
+2. **Prioritize Completion**: Address TODOs systematically
+3. **Extensive Documentation**: Add detailed explanations, examples, use cases, pitfalls, performance considerations
+4. **Add Cross-References**: Include links to fundamentals when completing TODOs
+5. **Remove Completed TODOs**: Replace with comprehensive content
+6. **Document Remaining TODOs**: If cannot complete, explain why and timeline
 
 ### Main README.md
 
@@ -553,84 +572,14 @@ The root `README.md` should:
 
 **MUST DO - Extensive README Content**:
 
-When creating or updating README.md files (both concept folders and main README):
+When creating or updating README.md files:
 
-1. **Comprehensive Coverage**: Don't just summarize - provide extensive information:
-
-   - Detailed problem statements with historical context
-   - Multiple solution approaches when applicable
-   - Deep dive into how things work internally
-   - Edge cases and gotchas
-   - Performance implications
-   - Security considerations
-
-2. **Multiple Examples**: Include various examples showing:
-
-   - Basic usage
-   - Common patterns
-   - Advanced techniques
-   - Real-world scenarios
-
-3. **Cross-References**: Link extensively to:
-
-   - Related concepts in other folders
-   - Code examples in the same folder
-   - External documentation when helpful
-   - Related Node.js APIs
-
-4. **Visual Aids**: When helpful, include:
-
-   - Diagrams (ASCII or mermaid)
-   - Code flow explanations
-   - Architecture diagrams
-   - Comparison tables
-
-5. **Learning Path**: Explain:
-   - Prerequisites for understanding this concept
-   - What concepts this builds upon
-   - What concepts this enables
-   - Recommended order of study
-
-**Example of Extensive README Section**:
-
-Instead of:
-
-```markdown
-Buffers store binary data.
-```
-
-Use:
-
-```markdown
-### Buffers: Binary Data Storage
-
-Buffers are Node.js's way of handling binary data - raw bytes that don't fit neatly into JavaScript strings. They solve fundamental problems in computing:
-
-**The Core Problem**:
-JavaScript strings are UTF-8 encoded, which works great for text but fails for:
-
-- Binary file formats (images, executables)
-- Network protocols (TCP packets, WebSocket frames)
-- Hardware interfaces (sensor data, device communication)
-
-**How Buffers Solve It**:
-Buffers provide a raw memory interface that:
-
-1. Stores data as bytes (0-255 values)
-2. Allows direct memory manipulation
-3. Enables efficient data transformation
-4. Bridges JavaScript and native system operations
-
-**Real-World Applications**:
-
-- Image processing (reading/writing PNG, JPEG)
-- Network protocols (HTTP body parsing, WebSocket frames)
-- File system operations (binary file handling)
-- Crypto operations (hashing, encryption)
-- Inter-process communication
-
-[Continue with extensive examples, code snippets, and detailed explanations...]
-```
+1. **Prerequisites Section**: List required fundamentals with links (see structure above)
+2. **Comprehensive Coverage**: Detailed problem statements, solutions, historical context
+3. **Inline Cross-References**: Link to fundamentals when concepts are introduced
+4. **Code References**: Link to all code examples in the folder
+5. **Cross-References Section**: Link to related concepts and fundamentals
+6. **Learning Path**: Prerequisites, what this enables, recommended next steps
 
 ### Documentation Style
 
@@ -642,12 +591,63 @@ Buffers provide a raw memory interface that:
 
 ### Cross-Referencing
 
-**REQUIRED**: Link related concepts and files:
+**REQUIRED**: Extensive cross-referencing between concept folders and fundamentals:
+
+#### In Code Files
+
+Add inline cross-references when introducing foundational concepts:
+
+```javascript
+// Writing hex values (see [Binary Data](../docs/fundamentals/binary-data.md) for hex explanation)
+memoryContainer[0] = 0xff;
+
+// async/await pattern (see [Asynchronous Programming](../docs/fundamentals/async-programming.md) for async patterns)
+async function readFile() {
+  const data = await fs.readFile('file.txt');
+}
+```
+
+#### In README Files
+
+**Prerequisites Section** (required at top of each concept README):
 
 ```markdown
-For more on configuration, see [Configuration Files](docs/configuration-files.md).
-For buffer allocation strategies, see [different-alloc.js](buffers/different-alloc.js).
+## Prerequisites
+
+Before studying this concept, it's recommended to understand:
+
+- **[Binary Data](../docs/fundamentals/binary-data.md)**: Bits, bytes, number systems
+- **[Memory](../docs/fundamentals/memory.md)**: Memory allocation, heap, garbage collection
+
+See [Fundamentals](../docs/fundamentals/) for complete list of foundational concepts.
 ```
+
+**Inline Cross-References** throughout README:
+
+```markdown
+Buffers work with binary data (see [Binary Data](../docs/fundamentals/binary-data.md) for fundamentals).
+
+Memory is allocated on the heap (see [Memory](../docs/fundamentals/memory.md) for details).
+```
+
+#### In Fundamentals Docs
+
+**"Used In" Section** (required at end of each fundamental doc):
+
+```markdown
+## Used In
+
+This fundamental concept is used in:
+
+- **[Buffers](../buffers/)**: Binary data handling, hex encoding, number systems
+- **[File System](../file-system/)**: Binary file operations, encoding conversions
+```
+
+**Cross-Reference Mapping**:
+
+- Concept folders → Link to relevant fundamentals when concepts are introduced
+- Fundamentals docs → Link back to concept folders that use them
+- Code comments → Link to fundamentals when foundational concepts appear
 
 ---
 
@@ -778,33 +778,37 @@ graph LR
    - Set up version management
    - Verify configuration
 
-#### Phase 2: Core Concepts (Sequential)
+#### Phase 2: Fundamentals (Before Concepts)
 
-3. **Study Concept Folders** (order determined by prerequisites and complexity):
+3. **Study Fundamentals** (before diving into concepts):
+   - Review [Fundamentals](../docs/fundamentals/) overview
+   - Study relevant fundamentals based on concept you want to learn:
+     - For Buffers: [Binary Data](../docs/fundamentals/binary-data.md) + [Memory](../docs/fundamentals/memory.md)
+     - For EventEmitter: [Asynchronous Programming](../docs/fundamentals/async-programming.md)
+     - For File System: [File Systems](../docs/fundamentals/file-systems.md) + [Asynchronous Programming](../docs/fundamentals/async-programming.md)
+
+#### Phase 3: Core Concepts (Sequential)
+
+4. **Study Concept Folders** (order determined by prerequisites and complexity):
+   - Read prerequisites section in README.md
+   - Review required fundamentals if not already studied
    - Read the concept's README.md for theory and problem statement
    - Study basic examples (typically `app.js`) for core operations
    - Explore advanced examples for deeper understanding
    - Study enterprise-level examples for production patterns
    - Run examples and experiment
-   - Complete any exercises or challenges
+   - Follow cross-references to fundamentals when concepts are unclear
 
 **Generic Study Pattern for Each Concept**:
 
-1. Read README.md thoroughly (theory first)
-2. Study basic examples (understand core API)
-3. Run and modify basic examples
-4. Study intermediate examples (see patterns)
-5. Study enterprise examples (production patterns)
-6. Build your own examples
-7. Review related concepts
-
-#### Phase 3: Advanced Topics (As Available)
-
-4. **Future Topics**: Follow same pattern
-   - Read README for theory
-   - Study code examples (basic → advanced → enterprise)
-   - Experiment and build
-   - Apply to real-world scenarios
+1. Check prerequisites section in README.md
+2. Review required fundamentals if needed
+3. Read README.md thoroughly (theory first)
+4. Study basic examples (understand core API)
+5. Run and modify basic examples
+6. Study enterprise examples (production patterns)
+7. Build your own examples
+8. Review related concepts via cross-references
 
 **Important**: The specific concepts and their order are documented in the main README.md. This ruleset provides the **framework** for learning, not the specific content order.
 
@@ -850,12 +854,12 @@ touch README.md app.js
 
 Follow the [Documentation Standards](#documentation-standards) section:
 
-- Problem statement
+- **Prerequisites section** (REQUIRED) - List fundamentals needed
+- Problem statement with inline cross-references
 - Solution explanation
 - Historical context
 - Code references
-- TODO markers
-- Cross-references
+- Cross-references section
 
 #### 3. Write Code Examples
 
@@ -863,9 +867,10 @@ Follow the [Code Example Standards](#code-example-standards) section:
 
 - Use `node:` protocol
 - ES modules syntax
-- Comprehensive comments
+- Comprehensive comments with cross-references to fundamentals
 - Safety warnings for unsafe operations
-- Progressive examples
+- Progressive examples (basic → enterprise)
+- Inline cross-references when introducing foundational concepts
 
 #### 4. Update Main README
 
@@ -892,13 +897,14 @@ Add entry to main [README.md](README.md):
 
 **MUST DO**: Ensure README.md includes:
 
+- **Prerequisites section** with links to fundamentals (REQUIRED)
 - Extensive problem statement with historical context
 - Comprehensive solution explanation
+- Inline cross-references to fundamentals throughout
 - Multiple examples (basic to enterprise-level)
 - Real-world use cases
 - Performance and security considerations
-- Cross-references to related concepts
-- Learning prerequisites and outcomes
+- Cross-references section linking to related concepts
 
 #### 7. Create Enterprise Examples
 
@@ -920,15 +926,21 @@ Add entry to main [README.md](README.md):
 - Ensure consistency with existing style
 - Verify enterprise examples demonstrate production patterns
 
-#### 9. Update Ruleset
+#### 9. Add Cross-References
+
+**MUST DO**: Add cross-references throughout:
+
+- **Code files**: Inline cross-references when introducing foundational concepts
+- **README.md**: Prerequisites section, inline links, cross-references section
+- **Fundamentals docs**: Update "Used In" sections to include new concept
+
+#### 10. Update Ruleset
 
 **MUST DO**: When adding a new concept section, update this ruleset:
 
 - Add the new concept to the Learning Path section if it affects recommended order
-- Update Step-by-Step Path with the new concept's study pattern
 - Update any examples that reference specific concepts to be more generic
 - Ensure the ruleset remains accurate and reflects current project structure
-- Document any new patterns or requirements discovered during implementation
 
 ### Modifying Existing Content
 
@@ -946,16 +958,17 @@ Before submitting contributions:
 - [ ] **Read and understood this entire ruleset**
 - [ ] **Verified compliance with all ruleset requirements**
 - [ ] All code examples are executable
-- [ ] README follows documentation standards
+- [ ] README includes prerequisites section with fundamentals links
+- [ ] Code includes inline cross-references to fundamentals
+- [ ] README includes inline cross-references throughout
 - [ ] Code uses `node:` protocol for core modules
 - [ ] Code uses ES modules syntax
 - [ ] Comments explain "why" not just "what"
 - [ ] Unsafe operations have warnings
 - [ ] Main README updated with new content
-- [ ] Cross-references are accurate
-- [ ] TODOs are appropriate and documented
+- [ ] Cross-references are accurate and tested
 - [ ] Enterprise-level examples included (if adding new concept)
-- [ ] Ruleset updated (if adding new concept section)
+- [ ] Fundamentals docs updated with "Used In" sections (if applicable)
 
 ### Documentation Updates
 
@@ -964,8 +977,9 @@ When updating documentation:
 1. **Accuracy**: Verify all information is correct
 2. **Completeness**: Address all aspects of the topic
 3. **Clarity**: Use clear, beginner-friendly language
-4. **Examples**: Include practical examples
-5. **Links**: Ensure all links work
+4. **Cross-References**: Add/update links to fundamentals and related concepts
+5. **Examples**: Include practical examples
+6. **Links**: Ensure all links work (test relative paths)
 
 ### Version Updates
 
@@ -1022,6 +1036,8 @@ When updating the ruleset, verify:
 
 - [ ] No hardcoded references to specific concepts (except as examples)
 - [ ] Learning path remains flexible and extensible
+- [ ] Cross-referencing requirements are clearly documented
+- [ ] Fundamentals documentation structure is explained
 - [ ] All examples use generic patterns
 - [ ] New concepts can be added without breaking existing structure
 - [ ] Documentation standards apply universally
