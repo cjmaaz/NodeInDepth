@@ -2,6 +2,8 @@
 
 This section covers the foundational concepts you need to understand before diving into specific Node.js topics. These fundamentals provide the building blocks for understanding how Node.js works under the hood.
 
+If you're looking for the overall navigation and recommended order across the whole repo, start at **[Docs Index](../README.md)**.
+
 ## Why Fundamentals Matter
 
 Node.js concepts build upon fundamental computing principles. Understanding these basics helps you:

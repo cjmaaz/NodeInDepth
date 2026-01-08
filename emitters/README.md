@@ -4,6 +4,14 @@
 
 ---
 
+## Prerequisites
+
+Before studying EventEmitter, it's recommended to understand:
+
+- **[Asynchronous Programming](../docs/fundamentals/async-programming.md)**: Callbacks, promises, async/await, event loop, event-driven patterns
+
+See [Fundamentals](../docs/fundamentals/) for the complete list.
+
 ## Problem Statement
 
 ### JavaScript's Single-Threaded Nature
@@ -49,6 +57,8 @@ The core challenge is:
 ### What is EventEmitter?
 
 **EventEmitter** is Node.js's implementation of the Observer pattern (also known as Pub/Sub - Publish/Subscribe). It allows objects to emit named events and other objects (listeners) to listen and respond to those events.
+
+For the canonical API reference, see [EventEmitter](https://nodejs.org/api/events.html) (Node.js docs). For background on the Observer pattern, see [Observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) (Wikipedia).
 
 ### How Event-Driven Architecture Works
 
@@ -695,13 +705,9 @@ See [production-example.js](production-example.js) for enterprise-level patterns
 
 ---
 
-## Prerequisites
+## Prerequisites (recap)
 
-Before studying EventEmitter, it's recommended to understand:
-
-- **[Asynchronous Programming](../docs/fundamentals/async-programming.md)**: Callbacks, promises, async/await, event loop, event-driven patterns
-
-See [Fundamentals](../docs/fundamentals/) for complete list of foundational concepts.
+See [Prerequisites](#prerequisites) above.
 
 ## Learning Path
 

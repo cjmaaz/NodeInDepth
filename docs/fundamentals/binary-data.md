@@ -4,11 +4,20 @@
 
 ---
 
+## Prerequisites
+
+Before studying Binary Data, it's helpful to have:
+
+- Basic comfort with arithmetic (addition/multiplication)
+- Curiosity about “how computers represent numbers” (no prior low-level knowledge required)
+
 ## Problem Statement
 
 ### The Digital World is Binary
 
 Computers operate on a fundamental principle: everything is represented using just two states - **on** or **off**, **1** or **0**. This binary system is the foundation of all digital computing.
+
+For a broad refresher, see [Binary number](https://en.wikipedia.org/wiki/Binary_number) and [Bit](https://en.wikipedia.org/wiki/Bit) (Wikipedia).
 
 ### Why This Matters
 
@@ -37,6 +46,8 @@ When working with Node.js:
 ### What is Binary?
 
 **Binary** means "two states" - everything in computing is represented using just two digits: **0** and **1**. These are called **bits** (binary digits).
+
+If you want a quick external primer on number bases, see [Positional notation](https://en.wikipedia.org/wiki/Positional_notation) (Wikipedia).
 
 ### Why Binary?
 

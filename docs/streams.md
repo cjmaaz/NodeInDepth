@@ -37,12 +37,12 @@ This document focuses on the mechanics that matter in real systems:
 
 ### Two buffers you must mentally separate
 
-When you stream file or network I/O, there are usually *at least* two buffering layers:
+When you stream file or network I/O, there are usually _at least_ two buffering layers:
 
 1. **User-space buffers**: Node stream internal queues (JS-visible)
 2. **Kernel buffers**: OS page cache, socket buffers, filesystem caches (not directly JS-visible)
 
-Backpressure in Node primarily manages **user-space buffering**. You cannot “turn off” kernel buffering, and you cannot fully control it from JS, but you *can* control whether your process accumulates unbounded queued data.
+Backpressure in Node primarily manages **user-space buffering**. You cannot “turn off” kernel buffering, and you cannot fully control it from JS, but you _can_ control whether your process accumulates unbounded queued data.
 
 ---
 
@@ -84,12 +84,14 @@ The most common misconception:
 
 > `highWaterMark` is not a strict maximum buffer size. It’s the point where the stream begins applying backpressure signals.
 
-What it *does*:
+For the canonical Node.js behavior, see [Stream API](https://nodejs.org/api/stream.html) and specifically [Writable `.write()`](https://nodejs.org/api/stream.html#writablewritechunk-encoding-callback) / [`writableHighWaterMark`](https://nodejs.org/api/stream.html#writablewritablehighwatermark) (Node.js docs). For the conceptual model used in the web platform, compare with the [Streams Standard](https://streams.spec.whatwg.org/) (WHATWG).
+
+What it _does_:
 
 - Influences when `.write()` starts returning `false` on writables.
 - Influences when a readable considers its internal queue “full enough”.
 
-What it *does not* do:
+What it _does not_ do:
 
 - Guarantee that buffering will never exceed it.
 - Guarantee stable memory usage if you ignore return values / events.

@@ -2,6 +2,10 @@
 
 This document explains the various configuration files used in this project and why they're important for maintaining consistency and preventing common issues.
 
+## Start Here
+
+- **[Docs Index](README.md)**: Recommended reading order and where everything lives
+
 ## Table of Contents
 
 - [.nvmrc - Node Version Manager Configuration](#nvmrc---node-version-manager-configuration)
@@ -14,6 +18,8 @@ This document explains the various configuration files used in this project and 
 ### What is .nvmrc?
 
 The `.nvmrc` file specifies which version of Node.js should be used for this project. It's a simple text file that contains a single version number.
+
+See [nvm](https://github.com/nvm-sh/nvm) (official project) for the expected `.nvmrc` workflow, and [fnm](https://github.com/Schniz/fnm) as a popular alternative.
 
 ### Why Do We Need It?
 
@@ -167,6 +173,8 @@ Most modern version managers recognize this file format.
 ### What is .npmrc?
 
 The `.npmrc` file configures how npm (Node Package Manager) behaves in this project. Settings here apply whenever you run npm commands within this directory.
+
+For the authoritative behavior, see [npm config](https://docs.npmjs.com/cli/v11/using-npm/config) and [package.json engines](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#engines) (npm docs).
 
 ### Our Configuration
 

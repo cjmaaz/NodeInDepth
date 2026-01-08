@@ -4,6 +4,15 @@
 
 ---
 
+## Prerequisites
+
+Before studying Buffers, it's recommended to understand:
+
+- **[Binary Data](../docs/fundamentals/binary-data.md)**: Bits, bytes, number systems (decimal, binary, hexadecimal)
+- **[Memory](../docs/fundamentals/memory.md)**: Memory allocation, heap, garbage collection, memory pools
+
+See [Fundamentals](../docs/fundamentals/) for the complete list.
+
 ## Problem Statement
 
 Early computers ran into 3 stubborn realities:
@@ -54,6 +63,8 @@ Without buffers, systems would:
 ### What Are Buffers?
 
 A **Buffer** is a region of memory (see [Memory](../docs/fundamentals/memory.md)) used to store data temporarily while it is being moved from one place to another. In Node.js, buffers provide a way to work with binary data (see [Binary Data](../docs/fundamentals/binary-data.md)) - raw bytes that don't fit neatly into JavaScript strings.
+
+For the canonical API details, see [Buffer](https://nodejs.org/api/buffer.html) (Node.js docs). For the JS typed-array foundations, see [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) (MDN).
 
 ### How Buffers Work
 
@@ -663,14 +674,9 @@ See [production-example.js](production-example.js) for enterprise-level patterns
 
 ---
 
-## Prerequisites
+## Prerequisites (recap)
 
-Before studying Buffers, it's recommended to understand:
-
-- **[Binary Data](../docs/fundamentals/binary-data.md)**: Bits, bytes, number systems (decimal, binary, hexadecimal)
-- **[Memory](../docs/fundamentals/memory.md)**: Memory allocation, heap, garbage collection, memory pools
-
-See [Fundamentals](../docs/fundamentals/) for complete list of foundational concepts.
+See [Prerequisites](#prerequisites) above.
 
 ## Learning Path
 

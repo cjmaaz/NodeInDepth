@@ -4,6 +4,12 @@
 
 ---
 
+## Prerequisites
+
+Before studying Memory, it's recommended to understand:
+
+- **[Binary Data](binary-data.md)**: Bits/bytes and what “data” means at the lowest level
+
 ## Problem Statement
 
 ### The Need for Temporary Storage
@@ -33,6 +39,8 @@ Without understanding memory:
 ### What is Memory?
 
 **Memory** is the temporary storage space where computers store data and instructions that are currently being used. It's much faster than permanent storage (like hard drives) but volatile (data is lost when power is off).
+
+For a high-level external overview, see [Computer memory](https://en.wikipedia.org/wiki/Computer_memory) and [Random-access memory](https://en.wikipedia.org/wiki/Random-access_memory) (Wikipedia).
 
 ### Memory Analogy
 

@@ -4,6 +4,13 @@
 
 ---
 
+## Prerequisites
+
+Before studying File Systems, it's helpful to have:
+
+- Basic understanding of files/folders from everyday OS usage
+- **[Asynchronous Programming](async-programming.md)**: why non-blocking I/O matters in Node.js
+
 ## Problem Statement
 
 ### The Need for Persistent Storage
@@ -37,6 +44,8 @@ When working with Node.js:
 ### What is a File System?
 
 A **file system** is the method and data structure that an operating system uses to organize files on a storage device. It provides:
+
+If you want the general CS/OS view, see [File system](https://en.wikipedia.org/wiki/File_system) and [File descriptor](https://en.wikipedia.org/wiki/File_descriptor) (Wikipedia). For the Node API view, see [File system](https://nodejs.org/api/fs.html) (Node.js docs).
 
 - **Organization**: Hierarchical structure (directories/folders)
 - **Naming**: Unique names for files

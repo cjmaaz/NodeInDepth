@@ -2,6 +2,10 @@
 
 Welcome to Node.js In-Depth! This guide will help you set up your development environment and get started with learning Node.js.
 
+## Start Here
+
+- **[Docs Index](README.md)**: Recommended reading order and where everything lives
+
 ## Prerequisites
 
 Before diving into Node.js, make sure you have the following:
@@ -9,6 +13,8 @@ Before diving into Node.js, make sure you have the following:
 ### 1. Node.js Installation
 
 You'll need Node.js installed on your system. Download and install it from [nodejs.org](https://nodejs.org/).
+
+For background and release lines, see [Node.js releases](https://nodejs.org/en/about/previous-releases) (official).
 
 **To verify your installation:**
 

@@ -46,6 +46,8 @@ At a fundamentals level, a stream is:
 
 The core is not “reading” or “writing” — it’s **coordinating**.
 
+For the canonical Node API surface, see [Stream API](https://nodejs.org/api/stream.html) (Node.js docs). For the web platform’s conceptual model, compare with the [Streams Standard](https://streams.spec.whatwg.org/) (WHATWG). For internals curiosity (engine/runtime), the [V8 blog](https://v8.dev/blog) is a good starting point.
+
 ### Chunk
 
 A **chunk** is a unit of transfer.

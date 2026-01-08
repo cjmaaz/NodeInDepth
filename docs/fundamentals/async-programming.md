@@ -4,6 +4,13 @@
 
 ---
 
+## Prerequisites
+
+Before studying asynchronous programming, it's helpful to have:
+
+- Basic JavaScript functions + callbacks
+- Familiarity with `Promise` and `async/await` at a “usage” level (we’ll explain the mechanics here)
+
 ## Problem Statement
 
 ### The Blocking Problem
@@ -42,6 +49,8 @@ Modern applications need to:
 ### What is Asynchronous Programming?
 
 **Asynchronous programming** allows code to start an operation and continue executing other code while waiting for that operation to complete. When the operation finishes, a callback or promise handles the result.
+
+For an external refresher on JS scheduling, see [Concurrency model and the event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop) (MDN) and [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) (MDN).
 
 ### Synchronous vs Asynchronous
 

@@ -23,11 +23,13 @@ See [Fundamentals](../docs/fundamentals/) for the complete list.
 Real systems have 3 recurring realities:
 
 1. **Producers and consumers run at different speeds** (see [Asynchronous Programming](../docs/fundamentals/async-programming.md)).
+
    - Disk can read faster than your CPU parsing logic.
    - Network can burst data faster than your app can persist it.
    - Your code can generate data faster than the OS can flush it to a socket/disk.
 
 2. **Data is often “too large to fit comfortably”** in memory (see [Memory](../docs/fundamentals/memory.md)).
+
    - Reading a whole file into RAM is a common beginner move… and a common production incident.
    - Buffers are finite; “just buffer it” turns into latency spikes and out-of-memory crashes.
 
@@ -47,6 +49,8 @@ If you only have “read all / write all” primitives, you tend to pick one of 
 ### What are Streams?
 
 Streams are a **flow-control abstraction** that let you move data **incrementally** (in chunks) while coordinating speed differences using **backpressure**.
+
+For the canonical Node stream APIs, see [Stream API](https://nodejs.org/api/stream.html) (Node.js docs). If you want the web standard model (ReadableStream/WritableStream), compare with the [Streams Standard](https://streams.spec.whatwg.org/) (WHATWG).
 
 In Node.js, streams are primarily:
 

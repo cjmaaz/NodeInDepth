@@ -2,6 +2,10 @@
 
 A comprehensive learning resource covering Node.js core concepts and advanced topics. This project is designed to help developers understand Node.js from the ground up, with beginner-friendly explanations, practical examples, and in-depth explorations of how Node.js works under the hood.
 
+## Start Here
+
+- **Docs index**: [docs/README.md](docs/README.md) (recommended reading order + navigation)
+
 ## What You'll Learn
 
 This documentation covers:
@@ -23,6 +27,7 @@ This documentation covers:
 
 - [Getting Started](docs/getting-started.md) - Prerequisites, setup, and configuration
 - [Configuration Files](docs/configuration-files.md) - Understanding .nvmrc and .npmrc
+- [Docs Index](docs/README.md) - Where everything lives + recommended order
 
 ### Fundamentals
 

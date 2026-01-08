@@ -4,6 +4,16 @@
 
 ---
 
+## Prerequisites
+
+Before studying File System operations, it's recommended to understand:
+
+- **[File Systems](../docs/fundamentals/file-systems.md)**: File descriptors, I/O operations, blocking vs non-blocking
+- **[Asynchronous Programming](../docs/fundamentals/async-programming.md)**: Callbacks, promises, async/await patterns
+- **[Buffers](../buffers/)**: Binary data handling (files often work with buffers)
+
+See [Fundamentals](../docs/fundamentals/) for the complete list.
+
 ## Problem Statement
 
 Applications need to interact with the file system to:
@@ -38,6 +48,8 @@ Without proper file system handling:
 ### How Node.js Handles File Operations
 
 Node.js provides multiple approaches to file system operations, each optimized for different use cases:
+
+For the canonical API reference, see [File system](https://nodejs.org/api/fs.html) and [fs/promises](https://nodejs.org/api/fs.html#promises-api) (Node.js docs).
 
 1. **Callback-based**: Traditional async pattern with error-first callbacks
 2. **Promise-based**: Modern async/await pattern (recommended)
@@ -693,15 +705,9 @@ See [fs-project/app.js](fs-project/app.js) for FileHandle in action:
 
 ---
 
-## Prerequisites
+## Prerequisites (recap)
 
-Before studying File System operations, it's recommended to understand:
-
-- **[File Systems](../docs/fundamentals/file-systems.md)**: File descriptors, I/O operations, blocking vs non-blocking
-- **[Asynchronous Programming](../docs/fundamentals/async-programming.md)**: Callbacks, promises, async/await patterns
-- **[Buffers](../buffers/)**: Binary data handling (files often work with buffers)
-
-See [Fundamentals](../docs/fundamentals/) for complete list of foundational concepts.
+See [Prerequisites](#prerequisites) above.
 
 ## Learning Path
 
