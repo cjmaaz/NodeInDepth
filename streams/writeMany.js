@@ -12,6 +12,8 @@ const fileHandler = await fs.open(testFile, 'w');
 
 const stream = fileHandler.createWriteStream();
 
+console.log('HighWaterMark in Bytes: ', stream.writableHighWaterMark); // In v24.12 -> 64 KiB or 65536 Bytes
+
 for (let i = 0; i < 100000; i++) {
   const buff = Buffer.from(` ${i} `, 'utf-8');
   stream.write(buff);
