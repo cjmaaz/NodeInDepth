@@ -589,6 +589,7 @@ Master file system concepts, and file operations become clear!
 This fundamental concept is used in:
 
 - **[File System](../file-system/)**: File operations, file descriptors, I/O patterns, FileHandle, blocking vs non-blocking operations
+- **[Streams](../streams/)**: File-backed streams sit on file descriptors, kernel buffering, and I/O cost model
 
 ## Related Concepts
 

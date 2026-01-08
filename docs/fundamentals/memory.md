@@ -612,6 +612,7 @@ Master memory concepts, and Buffer operations become clear!
 This fundamental concept is used in:
 
 - **[Buffers](../buffers/)**: Memory allocation, heap storage, memory pools, garbage collection, memory safety
+- **[Streams](../streams/)**: Buffering/backpressure as memory safety, queue growth, GC pressure under load
 
 ## Related Concepts
 

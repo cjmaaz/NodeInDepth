@@ -118,6 +118,28 @@ Node.js concepts build upon fundamental computing principles. Understanding thes
 
 - **[File System](../file-system/)**: File operations, file descriptors, I/O patterns, FileHandle
 
+### [Streams](streams.md)
+
+**Prerequisites**: Asynchronous Programming + File Systems (recommended)
+
+**Covers**:
+
+- Why streams exist (flow control for mismatched speeds)
+- Chunks, buffering, and backpressure
+- `highWaterMark` as a backpressure threshold
+- Stream types: Readable, Writable, Duplex, Transform (conceptual)
+
+**Needed For**:
+
+- Understanding [Streams](../streams/)
+- Building efficient file/network processing
+- Avoiding “buffer everything” memory failures
+- Building pipelines and transforms
+
+**Used By**:
+
+- **[Streams](../streams/)**: Backpressure, chunked processing, composable I/O
+
 ## Learning Path
 
 ### Recommended Order
@@ -126,6 +148,7 @@ Node.js concepts build upon fundamental computing principles. Understanding thes
 2. **Then**: [Memory](memory.md) - Understanding how data is stored and managed
 3. **Next**: [Asynchronous Programming](async-programming.md) - Core to Node.js architecture
 4. **Finally**: [File Systems](file-systems.md) - Understanding I/O operations
+5. **Then**: [Streams](streams.md) - Flow control, backpressure, and chunk-based processing
 
 ### Prerequisites by Topic
 
@@ -143,6 +166,12 @@ Node.js concepts build upon fundamental computing principles. Understanding thes
 - ✅ [File Systems](file-systems.md)
 - ✅ [Asynchronous Programming](async-programming.md) (for async file operations)
 
+**Before studying Streams**:
+
+- ✅ [Streams](streams.md)
+- ✅ [Asynchronous Programming](async-programming.md) (event-driven flow control)
+- ✅ [File Systems](file-systems.md) (streams are commonly I/O-backed)
+
 ## How to Use This Section
 
 1. **Read Before Concepts**: Review relevant fundamentals before studying a concept folder
@@ -157,6 +186,7 @@ Node.js concepts build upon fundamental computing principles. Understanding thes
 - **[Buffers](../buffers/)**: Uses Binary Data + Memory
 - **[EventEmitter](../emitters/)**: Uses Asynchronous Programming
 - **[File System](../file-system/)**: Uses File Systems + Asynchronous Programming
+- **[Streams](../streams/)**: Uses Streams + Asynchronous Programming + File Systems (and often Buffers)
 
 ### Related Documentation
 

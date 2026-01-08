@@ -886,6 +886,7 @@ This fundamental concept is used in:
 
 - **[EventEmitter](../emitters/)**: Callbacks, async patterns, event loop integration, Pub/Sub pattern
 - **[File System](../file-system/)**: Async file operations, callbacks, promises, async/await patterns
+- **[Streams](../streams/)**: Event-driven I/O, backpressure, `drain`/`data`/`end` lifecycle, pipeline composition
 
 ## Related Concepts
 

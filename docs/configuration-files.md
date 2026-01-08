@@ -26,12 +26,13 @@ Different Node.js versions can have different features, APIs, and behaviors. Wit
 ### Our Configuration
 
 ```
-24.11.1
+24.12.0
 ```
 
-This project uses **Node.js version 24.11.1**, which is an LTS (Long Term Support) release.
+This project uses **Node.js version 24.12.0**, which is an LTS (Long Term Support) release.
 
 **What is LTS?**
+
 - LTS versions are stable, production-ready releases
 - They receive critical bug fixes and security updates for an extended period
 - Recommended for most applications, especially production systems
@@ -44,6 +45,7 @@ This project uses **Node.js version 24.11.1**, which is an LTS (Long Term Suppor
 If you don't have nvm installed:
 
 **macOS/Linux:**
+
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ```
@@ -56,23 +58,27 @@ Use [nvm-windows](https://github.com/coreybutler/nvm-windows/releases)
 Once you have nvm installed:
 
 1. Navigate to the project directory:
+
 ```bash
 cd /path/to/NodeInDepth
 ```
 
 2. Install the version specified in .nvmrc:
+
 ```bash
 nvm install
 ```
 
 3. Use the version:
+
 ```bash
 nvm use
 ```
 
 You should see output like:
+
 ```
-Now using node v24.11.1 (npm v10.x.x)
+Now using node v24.12.0 (npm v11.7.0)
 ```
 
 #### Automatic Switching (Optional)
@@ -80,6 +86,7 @@ Now using node v24.11.1 (npm v10.x.x)
 You can configure your shell to automatically switch Node.js versions when you enter a directory with a `.nvmrc` file.
 
 **For Zsh** (add to `~/.zshrc`):
+
 ```bash
 # Automatically use the Node version from .nvmrc
 autoload -U add-zsh-hook
@@ -105,6 +112,7 @@ load-nvmrc
 ```
 
 **For Bash** (add to `~/.bashrc` or `~/.bash_profile`):
+
 ```bash
 # Automatically use the Node version from .nvmrc
 cdnvm() {
@@ -171,6 +179,7 @@ engine-strict=true
 This setting works with the `engines` field in `package.json` to enforce Node.js and npm version requirements.
 
 **Without engine-strict:**
+
 ```bash
 npm install
 # Warning: Unsupported engine...
@@ -178,10 +187,11 @@ npm install
 ```
 
 **With engine-strict:**
+
 ```bash
 npm install
 # Error: The engine "node" is incompatible with this module.
-# Expected version ">=18.0.0". Got "16.14.0"
+# Expected version "24.12.0". Got "16.14.0"
 # (Installation fails immediately)
 ```
 
@@ -197,21 +207,24 @@ npm install
 The `.npmrc` setting works together with the `engines` field in `package.json`:
 
 **package.json:**
+
 ```json
 {
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": "24.12.0",
+    "npm": "11.7.0"
   }
 }
 ```
 
 **.npmrc:**
+
 ```
 engine-strict=true
 ```
 
 When you run `npm install`, npm checks:
+
 1. Is `engine-strict` enabled? (Yes, in .npmrc)
 2. What versions are required? (Check package.json engines field)
 3. Do current versions match? (Check node -v and npm -v)
@@ -283,6 +296,7 @@ npm config ls -l
 ### Team Workflow
 
 1. When cloning the project:
+
    ```bash
    git clone <repository>
    cd NodeInDepth
@@ -291,6 +305,7 @@ npm config ls -l
    ```
 
 2. When updating Node.js version:
+
    - Update `.nvmrc` with new version
    - Update `engines` field in `package.json`
    - Test thoroughly before committing
@@ -326,7 +341,7 @@ npm config ls -l
 
 ## Summary
 
-- **`.nvmrc`**: Ensures everyone uses the same Node.js version (24.11.1 LTS)
+- **`.nvmrc`**: Ensures everyone uses the same Node.js version (24.12.0 LTS)
 - **`.npmrc`**: Enforces version requirements and configures npm behavior
 - Together, they prevent version-related issues and maintain project consistency
 

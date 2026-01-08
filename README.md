@@ -15,6 +15,7 @@ This documentation covers:
 - **[Buffers](buffers/)** - Binary data handling, memory management, and buffer operations
 - **[EventEmitter](emitters/)** - Event-driven programming, pub/sub patterns, and asynchronous event handling
 - **[File System](file-system/)** - File operations, file handles, I/O patterns, and file system APIs
+- **[Streams](streams/)** - Streaming I/O, backpressure, and chunk-based processing
 
 ## Documentation
 
@@ -32,12 +33,18 @@ Foundational concepts that provide the building blocks for understanding Node.js
 - [Memory](docs/fundamentals/memory.md) - Memory concepts, allocation, garbage collection (prerequisite for Buffers)
 - [Asynchronous Programming](docs/fundamentals/async-programming.md) - Callbacks, promises, event-driven patterns (prerequisite for EventEmitter)
 - [File Systems](docs/fundamentals/file-systems.md) - File descriptors, I/O operations (prerequisite for File System)
+- [Streams](docs/fundamentals/streams.md) - Backpressure, chunking, flow control (prerequisite for Streams)
+
+### Deep Dives
+
+- [Streams (Deep Dive)](docs/streams.md) - Stream types, lifecycle, backpressure, and production guidance
 
 ### Core Concepts
 
 - [Buffers](buffers/) - Binary data handling and memory management
 - [EventEmitter](emitters/) - Event-driven programming and asynchronous patterns
 - [File System](file-system/) - File operations, file handles, and I/O patterns
+- [Streams](streams/) - Backpressure, flow control, and composable I/O pipelines
 
 ## How to Use This Resource
 

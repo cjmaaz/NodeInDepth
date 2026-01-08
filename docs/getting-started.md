@@ -21,7 +21,7 @@ You should see version numbers for both Node.js and npm (Node Package Manager).
 
 **Recommended Version:**
 
-- Node.js 18.x or higher (LTS - Long Term Support version)
+- Node.js **24.12.0** + npm **11.7.0** (project-required; see `.nvmrc`, `.npmrc`, and `package.json` `engines`)
 
 ### 2. Code Editor
 
@@ -51,12 +51,13 @@ A solid understanding of JavaScript is essential, including:
 
 ### 5. Foundational Concepts (Recommended)
 
-Before diving into specific Node.js topics, consider reviewing foundational concepts in the [Fundamentals](../fundamentals/) section:
+Before diving into specific Node.js topics, consider reviewing foundational concepts in the [Fundamentals](fundamentals/) section:
 
-- **[Binary Data](../fundamentals/binary-data.md)**: Bits, bytes, number systems (needed for Buffers)
-- **[Memory](../fundamentals/memory.md)**: Memory concepts, allocation, garbage collection (needed for Buffers)
-- **[Asynchronous Programming](../fundamentals/async-programming.md)**: Callbacks, promises, event-driven patterns (needed for EventEmitter)
-- **[File Systems](../fundamentals/file-systems.md)**: File descriptors, I/O operations (needed for File System)
+- **[Binary Data](fundamentals/binary-data.md)**: Bits, bytes, number systems (needed for Buffers)
+- **[Memory](fundamentals/memory.md)**: Memory concepts, allocation, garbage collection (needed for Buffers)
+- **[Asynchronous Programming](fundamentals/async-programming.md)**: Callbacks, promises, event-driven patterns (needed for EventEmitter)
+- **[File Systems](fundamentals/file-systems.md)**: File descriptors, I/O operations (needed for File System)
+- **[Streams](fundamentals/streams.md)**: Backpressure, chunking, and flow control (needed for Streams)
 
 These fundamentals provide the building blocks for understanding Node.js concepts deeply.
 
@@ -137,15 +138,18 @@ NodeInDepth/
 ├── docs/                    # Documentation files
 │   ├── getting-started.md   # Setup and prerequisites
 │   ├── configuration-files.md  # Project configuration
+│   ├── streams.md           # Streams deep dive
 │   └── fundamentals/        # Foundational concepts
 │       ├── README.md       # Fundamentals overview
 │       ├── binary-data.md  # Bits, bytes, number systems
 │       ├── memory.md       # Memory concepts
 │       ├── async-programming.md  # Async patterns
-│       └── file-systems.md # File system basics
+│       ├── file-systems.md # File system basics
+│       └── streams.md      # Streams fundamentals
 ├── buffers/                 # Buffer concept folder
 ├── emitters/                # EventEmitter concept folder
 ├── file-system/             # File System concept folder
+├── streams/                 # Streams concept folder
 ├── package.json             # Project dependencies and scripts
 └── README.md               # Project overview
 ```
@@ -153,7 +157,7 @@ NodeInDepth/
 ## How to Use This Documentation
 
 1. **Start with Setup**: Complete environment setup and Git configuration
-2. **Review Fundamentals**: Study foundational concepts in [Fundamentals](../fundamentals/) before diving into specific topics
+2. **Review Fundamentals**: Study foundational concepts in [Fundamentals](fundamentals/) before diving into specific topics
 3. **Follow the Order**: Start with foundational concepts before moving to advanced topics
 4. **Practice Actively**: Type out the code examples yourself - don't just copy and paste
 5. **Experiment**: Modify the examples to see what happens
@@ -165,9 +169,10 @@ NodeInDepth/
 1. **Setup**: Complete this getting started guide
 2. **Configuration**: Read [Configuration Files](configuration-files.md)
 3. **Fundamentals**: Review relevant fundamentals based on what you want to learn:
-   - For Buffers: Study [Binary Data](../fundamentals/binary-data.md) and [Memory](../fundamentals/memory.md)
-   - For EventEmitter: Study [Asynchronous Programming](../fundamentals/async-programming.md)
-   - For File System: Study [File Systems](../fundamentals/file-systems.md) and [Asynchronous Programming](../fundamentals/async-programming.md)
+   - For Buffers: Study [Binary Data](fundamentals/binary-data.md) and [Memory](fundamentals/memory.md)
+   - For EventEmitter: Study [Asynchronous Programming](fundamentals/async-programming.md)
+   - For File System: Study [File Systems](fundamentals/file-systems.md) and [Asynchronous Programming](fundamentals/async-programming.md)
+   - For Streams: Study [Streams](fundamentals/streams.md) + [Asynchronous Programming](fundamentals/async-programming.md)
 4. **Concepts**: Study specific Node.js concepts (Buffers, EventEmitter, File System)
 5. **Practice**: Work through code examples and build projects
 
@@ -205,14 +210,14 @@ Now that your environment is set up, you're ready to dive into Node.js!
 ### Recommended Next Steps
 
 1. **Review Configuration**: Read [Configuration Files](configuration-files.md) to understand project setup
-2. **Study Fundamentals**: Check out the [Fundamentals](../fundamentals/) section for foundational concepts
+2. **Study Fundamentals**: Check out the [Fundamentals](fundamentals/) section for foundational concepts
 3. **Choose a Topic**: Start with a concept folder (Buffers, EventEmitter, or File System)
 4. **Read Theory**: Study the README.md in each concept folder
 5. **Practice**: Work through code examples
 
 ### Documentation Structure
 
-- **[Fundamentals](../fundamentals/)**: Foundational concepts (binary data, memory, async programming, file systems)
+- **[Fundamentals](fundamentals/)**: Foundational concepts (binary data, memory, async programming, file systems, streams)
 - **[Concept Folders](../)**: Specific Node.js topics with theory and examples
 - **[Configuration Files](configuration-files.md)**: Project setup and configuration
 

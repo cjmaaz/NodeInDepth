@@ -730,6 +730,7 @@ This fundamental concept is used in:
 
 - **[Buffers](../buffers/)**: Binary data handling, hex encoding, number system conversions, endianness operations
 - **[File System](../file-system/)**: Binary file operations, encoding conversions, hex representations
+- **[Streams](../streams/)**: Chunk payloads (bytes vs text), encoding boundaries, framing vs chunking
 
 ## Related Concepts
 

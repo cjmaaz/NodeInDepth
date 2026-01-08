@@ -687,7 +687,7 @@ See [fs-project/app.js](fs-project/app.js) for FileHandle in action:
 ## Cross-References
 
 - **Buffers**: File operations work with buffers for binary data (see [Buffers](../buffers/) for buffer operations)
-- **Streams**: For processing large files, streams are more efficient
+- **[Streams](../streams/)**: For processing large files, streams are more efficient (see also [Streams deep dive](../docs/streams.md))
 - **EventEmitter**: File watchers use EventEmitter patterns
 - **Path**: File paths are handled using the path module
 
