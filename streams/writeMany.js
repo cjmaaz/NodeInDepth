@@ -18,5 +18,8 @@ for (let i = 0; i < 100000; i++) {
   const buff = Buffer.from(` ${i} `, 'utf-8');
   stream.write(buff);
 }
+
+stream.on('drain', () => console.log('We are now safe to write more!'));
+
 console.timeEnd('writeMany');
 console.log('How much in queue is filled, ready to be written: ', stream.writableLength);
