@@ -46,6 +46,12 @@ console.log('HighWaterMark in Bytes: ', stream.writableHighWaterMark); // In v24
 // console.timeEnd('writeMany');
 // console.log('How much in queue is filled, ready to be written: ', stream.writableLength);
 
+// TODO: to add more info about below code.
+fileHandler.close();
+stream.on('close', () => {
+  console.log('Stream was closed');
+});
+
 let i = 0;
 
 function writeMany() {
