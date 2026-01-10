@@ -34,7 +34,7 @@ console.log('HighWaterMark in Bytes: ', stream.writableHighWaterMark); // In v24
 //   // - false => stop writing and wait for 'drain'
 //   //
 //   // This example intentionally does NOT stop on false, so you can observe writableLength growth
-//   // and can observe high RAM usage. (TODO: Add more these)
+//   // and observe high RAM usage.
 //   // (i.e., what happens when a producer ignores backpressure).
 //   stream.write(buff);
 // }
@@ -46,39 +46,60 @@ console.log('HighWaterMark in Bytes: ', stream.writableHighWaterMark); // In v24
 // console.timeEnd('writeMany');
 // console.log('How much in queue is filled, ready to be written: ', stream.writableLength);
 
-// TODO: to add more info about below code.
-fileHandler.close();
+// IMPORTANT: Don't close the FileHandle before the stream is finished.
+// The stream still needs its underlying file descriptor to flush buffered chunks.
 stream.on('close', () => {
   console.log('Stream was closed');
+  // Best-effort close; depending on stream options, fd may already be closed.
+  fileHandler.close().catch(() => {});
 });
 
 let i = 0;
 
+const totalWrites = 1_000_000;
+
 function writeMany() {
-  while (i < 1000000) {
+  while (i < totalWrites) {
     const buff = Buffer.from(` ${i} `, 'utf-8');
+    const isLastWrite = i === totalWrites - 1;
     i++;
-    if (!stream.write(buff)) break; // If stream.write returns false, stop the loop.
-    if (i === 1000000) stream.end(buff); // This is our last write, stream.end signals that no more data will be written to this Writable.
+
+    // If this is the last chunk, end() will write it and signal completion.
+    // Doing write() first and then end(buff) would double-write the last chunk.
+    if (isLastWrite) {
+      stream.end(buff);
+      return;
+    }
+
+    // If stream.write returns false, stop the loop and wait for 'drain'.
+    if (!stream.write(buff)) break;
   }
 }
 
 // Resume our loop once our stream's internal buffer is emptied.
 stream.on('drain', () => {
-  // console.log('Draining!'); // We calculate the estimated file size, mentioned in below comment.
+  // console.log('Draining!');
   writeMany();
 });
 
 /*
  * The high water mark: (stream.writableHighWaterMark) => 65536 Bytes (or 64 KiB) in v24.12.
- * The drained even fired 120 times (meaning the drain was cleared 120 times)
- * 65536 * 120 = 7864320 Bytes
- * The test file that was created was of 78,88,898.
- * Which is few bytes off considering the last write will have something. (TODO: The reason could be wrong and need to verify once)
+ * The drain event fired N times (meaning the internal buffer exceeded the backpressure threshold and
+ * later drained enough to resume writing N times).
+ *
+ * NOTE: You can't reliably compute file size as (highWaterMark * drainCount) because:
+ * - highWaterMark is a threshold, not “bytes flushed per drain”
+ * - drain timing depends on write sizes and OS flush timing
+ * - chunk sizes vary here because the number of digits in `i` changes over time
  */
 
 stream.on('finish', () => {
+  // 'finish' means: all data has been flushed to the underlying resource.
   console.timeEnd('writeMany');
+});
+
+stream.on('error', (err) => {
+  console.error('Write stream error:', err);
 });
 
 writeMany();
